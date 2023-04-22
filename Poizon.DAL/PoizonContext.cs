@@ -9,6 +9,7 @@ namespace Poizon.DAL
 	{
 
         private IConfiguration Configuration;
+
         public PoizonContext()
         {
 
@@ -22,7 +23,8 @@ namespace Poizon.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(Configuration.GetConnectionString("Default"));
+            var connection = Configuration.GetConnectionString("Default");
+            optionsBuilder.UseNpgsql(connection);
         }
 
 
