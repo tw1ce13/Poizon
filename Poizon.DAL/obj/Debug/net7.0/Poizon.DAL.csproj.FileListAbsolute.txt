@@ -1,0 +1,17 @@
+/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.DAL.deps.json
+/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.DAL.runtimeconfig.json
+/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.DAL.dll
+/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.DAL.pdb
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.csproj.AssemblyReference.cache
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.AssemblyInfoInputs.cache
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.AssemblyInfo.cs
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.csproj.CoreCompileInputs.cache
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.dll
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/refint/Poizon.DAL.dll
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.pdb
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.genruntimeconfig.cache
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/ref/Poizon.DAL.dll
+/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.Domain.dll
+/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.Domain.pdb
+/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.csproj.CopyComplete
