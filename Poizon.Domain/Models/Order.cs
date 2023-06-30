@@ -1,15 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Poizon.Domain.Models;
 
 public class Order
 {
-    public int Id { get; set; }
-    public int BasketId { get; set; }
-    [ForeignKey("BasketId")]
-    public Basket? Basket { get; set; }
-    public int UserId { get; set; }
-    [ForeignKey("UserId")]
-    public User? User { get; set; }
-
+	public int Id { get; set; }
+	[Required]
+	public int UserId { get; set; }
+	[ForeignKey("UserId")]
+	public User? User { get; set; }
+	public int DiscountId { get; set; }
+	[ForeignKey("DiscountId")]
+	public DiscountOnOrder? DiscountOnOrder { get; set; }
+	public int Price { get; set; }
 }
+

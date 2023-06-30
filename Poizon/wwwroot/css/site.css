@@ -1,22 +1,1030 @@
-﻿html {
-  font-size: 14px;
+@font-face {
+    font-family: "Grotesk";
+    src: url(../../fonts/Gratesk/ofont.ru_KanitCyrillic.ttf); /* Путь к файлу шрифта */
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+@font-face {
+    font-family: "Russo";
+    src: url(../../fonts/RussoOne/RussoOne-Regular.ttf); /* Путь к файлу шрифта */
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+@font-face {
+    font-family: "Single Day";
+    src: url(fonts/Single_Day/SingleDay-Regular.ttf); /* Путь к файлу шрифта */
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 body {
-  margin-bottom: 60px;
+    min-height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
+
+header {
+    height: 80px;
+    z-index: 2;
+    position: sticky;
+}
+
+.header-content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.links .cart-link {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url("../../img/order.png"); /* Замените "path/to/cart-image.png" на путь к вашей картинке */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+
+.links a {
+    padding-top: 2vh;
+    color: #000000;
+    text-decoration: none;
+    font-family: "Grotesk", sans-serif;
+    font-size: 18px; /* Увеличение размера шрифта */
+    margin-right: 10px; /* Отступ между ссылками */
+    text-shadow: 0 4px 4px rgba(16, 16, 16, 0.2); /* Добавление тени */
+}
+
+
+.logo a {
+    color: #000000;
+    text-decoration: none;
+    font-family: "Grotesk", sans-serif;
+    font-size: 25px; /* Увеличение размера шрифта */
+    text-shadow: 0 4px 4px rgba(16, 16, 16, 0.2);
+}
+
+.login-button {
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    font-family: "Grotesk", sans-serif;
+    font-size: 12px;
+    text-shadow: 0 4px 4px rgba(16, 16, 16, 0.2);
+}
+
+
+
+.break-word {
+    word-break: break-word;
+}
+
+.slider-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.slider {
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+    .slide.active {
+        opacity: 1;
+        z-index: 0;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+    .slider-nav button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        color: #555555;
+        transition: color 0.3s ease-in-out;
+        padding: 0;
+    }
+
+        .slider-nav button:hover {
+            color: #3c3c3c;
+        }
+
+        .slider-nav button:first-child {
+            margin-right: auto;
+            padding-left: 2vh;
+        }
+
+        .slider-nav button:last-child {
+            margin-left: auto;
+            padding-right: 2vh;
+        }
+
+.slider-container {
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+}
+
+.slider-nav {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#prevSlide,
+#nextSlide {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+}
+
+@media (max-width: 768px) {
+    .slider {
+        overflow: hidden;
+    }
+
+    .slider-container {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .slide {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+    .slider-nav {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider {
+        overflow: hidden;
+    }
+
+    .slider-container {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .slide {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+    .slider-nav {
+        display: none;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .flex {
+        flex-direction: column;
+        padding-right: 0;
+    }
+
+    .col-md-5 {
+        padding-top: 7vh;
+        order: 1;
+    }
+
+    .delivery-image {
+        margin-top: 3vh;
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+.rectangle-2 {
+    position: relative;
+    padding-bottom: 10vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.about-store {
+    font-size: 32px;
+    color: #000000;
+    font-family: "Grotesk", sans-serif;
+    margin-bottom: 10px;
+}
+
+.line-1 {
+    width: 45vh;
+    height: 3px;
+    background-color: #000000;
+}
+
+.content-wrapper {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+    margin-right: 30px;
+}
+
+.flex {
+    margin-top: 10vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+.main {
+    margin-left: 10vh;
+    font-size: 25px;
+    padding-bottom: 80px;
+    font-family: "Russo", sans-serif;
+    color: white;
+}
+
+.sub {
+    margin-left: 15vh;
+    font-size: 20px;
+    font-family: "Russo";
+    color: white;
+}
+
+.image {
+    display: flex;
+    align-items: flex-start;
+}
+
+    .image img {
+        margin-right: 20vh;
+        margin-bottom: 2vh;
+        max-width: 30%;
+        height: auto;
+        margin-left: auto;
+    }
+
+footer {
+    background-color: #4b4b4b;
+    align-items: center;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.link {
+    margin: 0 10px;
+}
+
+    .link img {
+        align-items: center;
+        max-width: 100px;
+        height: auto;
+    }
+
+.footer-text {
+    font-size: 30px;
+    font-family: "Grotesk";
+    color: white;
+}
+
+
+@media screen and (max-width: 768px) {
+    /* Стили для мобильных устройств */
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .links {
+        flex-wrap: wrap;
+    }
+
+    .link {
+        margin: 10px;
+    }
+
+    .footer-text {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1190px) {
+    /* Стили для планшетных устройств */
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .links {
+        flex-wrap: wrap;
+    }
+
+    .link {
+        margin: 10px;
+    }
+
+    .footer-text {
+        font-size: 30px;
+    }
+}
+
+.content-menu {
+    display: flex;
+    width: 100%;
+    overflow-x: auto; /* Добавлено, чтобы добавить горизонтальную прокрутку */
+    white-space: nowrap;
+}
+
+aside {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.sidebar {
+    flex: 0 0 200px;
+    position: sticky;
+    top: 100px; /* Определенный момент, с которого начинается фиксация */
+}
+
+.category-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category {
+    margin-bottom: 10px;
+}
+
+    .category a {
+        display: block;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        font-weight: bold;
+        font-family: "Grotesk";
+    }
+
+.sub-category {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 10px;
+}
+
+    .sub-category li {
+        margin-bottom: 5px;
+    }
+
+    .sub-category a {
+        color: #606060;
+        font-family: "Grotesk";
+    }
+
+.product-list {
+    margin-left: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.product {
+    width: 300px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.product-a {
+    color: #000;
+    text-decoration: none;
+}
+
+.product img {
+    max-width: 100%;
+}
+
+.product h3 {
+    margin-top: 10px;
+    font-family: "Grotesk";
+}
+
+.product p {
+    color: #666;
+    font-family: "Grotesk";
+}
+
+.product .price {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: "Grotesk";
+}
+
+.product .btn {
+    display: inline-block;
+    background-color: #000000;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: "Grotesk";
+}
+
+    .product .btn:hover {
+        background-color: #4c4c4c;
+        color: white;
+        font-family: "Grotesk";
+    }
+
+.flex {
+    display: flex;
+}
+
+
+/* Стили для отображения бокового меню при активации */
+.sidebar.active {
+    display: block;
+}
+
+.close-menu-button {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Стили для отображения бокового меню при активации */
+.sidebar.active {
+    transform: translateX(0);
+}
+
+/* Стили для кнопки */
+#toggle-menu-button {
+    display: none;
+}
+
+@media screen and (max-width: 1090px) {
+    /* Стили для мобильных устройств */
+    .content-menu {
+        overflow-x: initial;
+    }
+
+    .close-menu-button {
+        display: block;
+    }
+
+    #toggle-menu-button {
+        display: block;
+        background-image: url("../../img/menu.png");
+        background-size: cover;
+        object-fit: fill;
+        height: 40px;
+        width: 40px;
+        border: none;
+        display: block; /* Отображается только на маленьких экранах */
+    }
+
+    .product-list {
+        align-items: center;
+    }
+
+    .product {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Стили для мобильных устройств */
+    .flex {
+        flex-direction: column;
+    }
+
+    .content-menu {
+        overflow-x: initial;
+    }
+
+    .close-menu-button {
+        display: block;
+    }
+
+    .sidebar {
+        z-index: 100000;
+        flex: none;
+        position: fixed; /* Используем position: fixed для фиксированного позиционирования */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .product-list {
+        margin-left: 0;
+    }
+
+    .product {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1180px) {
+    /* Стили для планшетных устройств */
+    .flex {
+        flex-direction: column;
+    }
+
+    .content-menu {
+        overflow-x: initial;
+    }
+
+    .close-menu-button {
+        display: block;
+    }
+
+    .sidebar {
+        z-index: 100000;
+        flex: none;
+        position: fixed; /* Используем position: fixed для фиксированного позиционирования */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .product-list {
+        margin-left: 0;
+    }
+
+    .product {
+        width: 100%;
+    }
+}
+
+/* Дополнительные медиа-запросы и стили для больших устройств */
+
+
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.minus-btn {
+    background-color: #8e8e8e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.plus-btn {
+    background-color: #8e8e8e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.quantity-btn:hover {
+    background-color: #c1c1c1;
+}
+
+.custom-input {
+    margin-left: 1vh;
+    margin-right: 1vh;
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    appearance: none;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 15px;
+    font-size: 16px;
+    height: 15px;
+}
+
+.custom-input {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 0;
+    text-align: center;
+}
+
+    .custom-input::-webkit-inner-spin-button,
+    .custom-input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .custom-input::-webkit-inner-spin-button {
+        display: none;
+    }
+
+    .custom-input::-webkit-outer-spin-button {
+        display: none;
+    }
+
+    .custom-input:focus {
+        outline: none;
+        border-color: #2CC7C1;
+    }
+
+
+.pricing {
+    width: 97%;
+    padding: 20px;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+}
+
+.items-price {
+    width: 97%;
+    align-items: center;
+    padding: 3vh;
+    background-color: #D1ECE9;
+    border-radius: 5px;
+    display: flex;
+}
+
+.itog {
+    margin-right: 2vh;
+    margin-left: 65%;
+}
+
+.itog, .price {
+    font-family: "IceBerg";
+    font-size: 30px;
+}
+
+.contenter {
+    flex-grow: 1;
+}
+
+.button_1685634047224 {
+    display: inline-block !important;
+    text-decoration: none !important;
+    background-color: #2cc7c1 !important;
+    color: #ffffff !important;
+    border: 3px solid #2cc7c1 !important;
+    border-radius: 14px !important;
+    font-size: 16px !important;
+    padding: 15px 36px !important;
+    transition: all 0.4s ease !important;
+    margin-left: 5vh;
+}
+
+    .button_1685634047224:hover {
+        text-decoration: none !important;
+        background-color: #4fb9b4 !important;
+        color: #ffffff !important;
+        border-color: #4fb9b4 !important;
+    }
+
+
+.delivery-image {
+    padding-top: 5vh;
+    padding-left: 10vh;
+    max-width: 35%;
+}
+
+
+.blocks {
+    padding-top: 13vh;
+    display: flex;
+    height: 50vh;
+    padding-left: 5%;
+}
+
+.linkers {
+    flex: 1;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+}
+
+
+    /* Стили для картинок */
+    .linkers img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+.link-text-1 {
+    padding-top: 2vh;
+    color: #000000;
+    font-size: 35px;
+    font-family: "Grotesk";
+}
+
+@media only screen and (max-width: 768px) {
+    .blocks {
+        height: auto; /* Автоматический размер блоков */
+        flex-direction: column; /* Расположение блоков в столбец */
+        padding-top: 0;
+        padding-left: 0;
+    }
+
+    .linkers {
+        padding: 5vh 0; /* Отступы для каждого блока */
+        text-align: center; /* Выравнивание по центру */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .link-text-1 {
+        padding-top: 1vh; /* Уменьшите верхний отступ текста */
+        font-size: 24px; /* Уменьшите размер шрифта */
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .link-text-1 {
+        padding-top: 3vh; /* Увеличьте верхний отступ текста */
+        font-size: 23px; /* Увеличьте размер шрифта */
+    }
+}
+
+
+
+.offer-block {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.offer-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.offer-description {
+    font-size: 18px;
+    color: #666666;
+}
+
+.registration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    z-index: 999;
+}
+
+.registration-form-container {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    transition: right 0.3s ease-in-out;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+input[type="tel"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .submit-button:hover {
+        background-color: #333333;
+    }
+
+.cart-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.cart-container {
+    position: relative;
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: gray;
+    cursor: pointer;
+}
+
+.cart-title {
+    font-family: "Grotesk";
+    margin-top: 0;
+}
+
+.cart-items {
+    margin-top: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+    .cart-item img {
+        width: 100px;
+        height: 80px;
+        object-fit: fill;
+        margin-right: 5vh;
+    }
+
+.cart-item-remove {
+    font-family: "Grotesk";
+    text-decoration: none;
+    color: #ff0000;
+}
+
+.cart-item-info {
+    font-family: "Grotesk";
+    flex: 1;
+}
+
+.cart-item-title {
+    font-family: "Grotesk";
+    font-weight: bold;
+}
+
+.cart-item-price {
+    font-family: "Grotesk";
+    color: gray;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+}
+
+    .cart-item-quantity input {
+        width: 40px;
+        text-align: center;
+    }
+
+.total {
+    font-family: "Grotesk";
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #8e8e8e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.9s ease-in-out;
+    cursor: pointer;
+}
+
+    .checkout-button:hover {
+        background-color: #c1c1c1;
+    }

@@ -16,12 +16,12 @@ namespace Poizon.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Poizon.Domain.Models.Basket", b =>
+            modelBuilder.Entity("Poizon.Domain.Models.Availability", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,7 +29,7 @@ namespace Poizon.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClothId")
+                    b.Property<int>("ClothesId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Count")
@@ -37,12 +37,12 @@ namespace Poizon.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClothId");
+                    b.HasIndex("ClothesId");
 
-                    b.ToTable("Baskets");
+                    b.ToTable("Availabilities");
                 });
 
-            modelBuilder.Entity("Poizon.Domain.Models.Cloth", b =>
+            modelBuilder.Entity("Poizon.Domain.Models.Brand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,29 +50,91 @@ namespace Poizon.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Brand")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Count")
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("integer");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ModelName")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Price")
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.Clothes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Cost")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("integer");
+
+                    b.Property<byte[]>("Photo")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<int>("SexId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StyleId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SubCategoryId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ModelId");
+
+                    b.HasIndex("SexId");
+
+                    b.HasIndex("SizeId");
+
+                    b.HasIndex("StyleId");
+
+                    b.HasIndex("SubCategoryId");
 
                     b.ToTable("Clothes");
                 });
 
-            modelBuilder.Entity("Poizon.Domain.Models.Group", b =>
+            modelBuilder.Entity("Poizon.Domain.Models.DiscountOnOrder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,15 +142,36 @@ namespace Poizon.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Category")
+                    b.Property<int>("Count")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Sex")
+                    b.Property<int>("Value")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Groups");
+                    b.ToTable("DiscountsOnOrder");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.Model", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Models");
                 });
 
             modelBuilder.Entity("Poizon.Domain.Models.Order", b =>
@@ -99,7 +182,10 @@ namespace Poizon.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BasketId")
+                    b.Property<int>("DiscountId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Price")
                         .HasColumnType("integer");
 
                     b.Property<int>("UserId")
@@ -107,11 +193,102 @@ namespace Poizon.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BasketId");
+                    b.HasIndex("DiscountId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.OrderClothes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClothesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClothesId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderClothes");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.Sex", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sexes");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.Size", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sizes");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.Style", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Styles");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.SubCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Poizon.Domain.Models.User", b =>
@@ -122,23 +299,11 @@ namespace Poizon.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Surname")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -147,33 +312,108 @@ namespace Poizon.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Poizon.Domain.Models.Basket", b =>
+            modelBuilder.Entity("Poizon.Domain.Models.UserInfo", b =>
                 {
-                    b.HasOne("Poizon.Domain.Models.Cloth", "Cloth")
-                        .WithMany()
-                        .HasForeignKey("ClothId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                    b.Navigation("Cloth");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UsersInfo");
                 });
 
-            modelBuilder.Entity("Poizon.Domain.Models.Cloth", b =>
+            modelBuilder.Entity("Poizon.Domain.Models.Availability", b =>
                 {
-                    b.HasOne("Poizon.Domain.Models.Group", "Group")
+                    b.HasOne("Poizon.Domain.Models.Clothes", "Clothes")
                         .WithMany()
-                        .HasForeignKey("GroupId")
+                        .HasForeignKey("ClothesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Group");
+                    b.Navigation("Clothes");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.Clothes", b =>
+                {
+                    b.HasOne("Poizon.Domain.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Poizon.Domain.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Poizon.Domain.Models.Model", "Model")
+                        .WithMany()
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Poizon.Domain.Models.Sex", "Sex")
+                        .WithMany()
+                        .HasForeignKey("SexId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Poizon.Domain.Models.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Poizon.Domain.Models.Style", "Style")
+                        .WithMany()
+                        .HasForeignKey("StyleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Poizon.Domain.Models.SubCategory", "SubCategory")
+                        .WithMany()
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Model");
+
+                    b.Navigation("Sex");
+
+                    b.Navigation("Size");
+
+                    b.Navigation("Style");
+
+                    b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("Poizon.Domain.Models.Order", b =>
                 {
-                    b.HasOne("Poizon.Domain.Models.Basket", "Basket")
+                    b.HasOne("Poizon.Domain.Models.DiscountOnOrder", "DiscountOnOrder")
                         .WithMany()
-                        .HasForeignKey("BasketId")
+                        .HasForeignKey("DiscountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -183,7 +423,37 @@ namespace Poizon.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Basket");
+                    b.Navigation("DiscountOnOrder");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.OrderClothes", b =>
+                {
+                    b.HasOne("Poizon.Domain.Models.Clothes", "Clothes")
+                        .WithMany()
+                        .HasForeignKey("ClothesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Poizon.Domain.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Clothes");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.UserInfo", b =>
+                {
+                    b.HasOne("Poizon.Domain.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

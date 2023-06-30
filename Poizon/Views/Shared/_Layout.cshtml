@@ -1,0 +1,89 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/site.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Index">Tishamarket</a>
+            </div>
+            <div class="links">
+                <a href="catalog.html" style="padding-top: 3vh;">Каталог</a>
+                <a href="about.html" style="padding-top: 3vh;">О нас</a>
+                <a href="#" class="cart-link"></a>
+                <a href="#" style="padding-top: 3vh;" class="login-button">Вход</a>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="registration-overlay">
+        <div class="registration-form-container">
+            <div class="close-button">&times;</div>
+            <h2 class="form-title">Вход:</h2>
+            <form class="registration-form" id="registerForm" method="POST">
+                <div class="form-group">
+                    <label for="phone-input">Номер телефона:</label>
+                    <input type="tel" id="phone-input" name="phone" placeholder="Введите номер телефона" required>
+                </div>
+                <div class="form-group">
+                    <label for="code-input">Код подтверждения:</label>
+                    <input type="text" id="code-input" name="code" placeholder="Введите код подтверждения" required>
+                </div>
+                <button type="submit" class="submit-button">Войти</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="cart-overlay">
+        <div class="cart-container">
+            <div class="close-button">&times;</div>
+            <h2 class="cart-title">Корзина</h2>
+            <div class="cart-items">
+                <ul class="cart-list">
+                    <li class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="img/snickers.png" alt="Product 1">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">Название товара</div>
+                            <div class="cart-item-quantity" style="padding-bottom: 1vh; padding-top: 1vh;">
+                                <button class="quantity-btn minus-btn">-</button>
+                                <input type="number" id="quantity-1" value="1" min="1" class="custom-input">
+                                <button class="quantity-btn plus-btn">+</button>
+                            </div>
+                            <div class="cart-item-price">Цена: $90</div>
+                            <a href="#" class="cart-item-remove">Удалить</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="total">Итого: $0</div>
+            <button class="checkout-button">Оформить заказ</button>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <footer style="padding-top: 3vh;">
+        <div class="items">
+            <div class="links">
+                <a href="#" class="link">
+                    <img src="img/telega.png" alt="Link 2">
+                </a>
+            </div>
+            <p class="footer-text">© 2023 Tishamarket</p>
+        </div>
+    </footer>
+</body>
+</html>
+

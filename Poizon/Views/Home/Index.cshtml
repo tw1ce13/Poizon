@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="slider-container">
+    <div class="slider">
+        <div class="slide">
+            <img src="../../../img/photo1.png" alt="Photo 1">
+        </div>
+        <div class="slide">
+            <img src="../../../img/photo2.png" alt="Photo 2">
+        </div>
+        <div class="slide">
+            <img src="../../../img/photo3.png" alt="Photo 3">
+        </div>
+    </div>
+    <div class="slider-nav">
+        <button id="prevSlide">&#8249;</button>
+        <button id="nextSlide">&#8250;</button>
+    </div>
+</div>
+
+
+
+
+<div class="rectangle-2" style="margin-top: 5vh;">
+    <div class="container">
+        <h1 class="about-store">У нас вы найдете </h1>
+        <div class="line-1"></div>
+    </div>
+
+    <div class="blocks">
+        <a href="#" id="block1" class="linkers">
+            <img src="../../../img/block1.png" alt="Первая ссылка" style="display: block;">
+            <span class="link-text-1" style="display: block;">Брендовая обувь для всех <br> сезонов</span>
+        </a>
+        <a href="#" id="block2" class="linkers">
+            <img src="../../../img/block2.png" alt="Вторая ссылка" style="display: block;">
+            <span class="link-text-1" style="display: block;">Брендовая верхняя одежда</span>
+        </a>
+    </div>
+    <div class="blocks">
+        <a href="#" id="block1" class="linkers">
+            <img src="../../../img/block3.png" alt="Первая ссылка" style="display: block;">
+            <span class="link-text-1" style="display: block;">Аксессуары на любой вкус</span>
+        </a>
+        <a href="#" id="block2" class="linkers">
+            <img src="../../../img/block4.png" alt="Вторая ссылка" style="display: block;">
+            <span class="link-text-1" style="display: block;">Деловая одежда</span>
+        </a>
+    </div>
+</div>
+
+
+
+<script>const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+          slides.forEach((slide, i) => {
+            if (i === index) {
+              slide.classList.add('active');
+            } else {
+              slide.classList.remove('active');
+            }
+          });
+        }
+
+        function nextSlide() {
+          currentSlide++;
+          if (currentSlide >= slides.length) {
+            currentSlide = 0;
+          }
+          showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+          currentSlide--;
+          if (currentSlide < 0) {
+            currentSlide = slides.length - 1;
+          }
+          showSlide(currentSlide);
+        }
+
+        // Показываем первый слайд
+        showSlide(currentSlide);
+
+        // Автоматическое переключение слайдов каждые 5 секунд
+        setInterval(nextSlide, 3500);
+
+        // Обработчики событий для стрелок
+        document.getElementById('prevSlide').addEventListener('click', prevSlide);
+        document.getElementById('nextSlide').addEventListener('click', nextSlide);</script>
+
+
+
+

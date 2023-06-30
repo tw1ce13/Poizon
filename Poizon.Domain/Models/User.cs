@@ -4,15 +4,11 @@ namespace Poizon.Domain.Models;
 
 public class User
 {
-    public int Id { get; set; }
-    [Required]
-    public string? Name { get; set; }
-    [Required]
-    public string? Surname { get; set; }
-    [Required]
-    public string? Address { get; set; }
-    [Required]
-    public string? PhoneNumber { get; set; }
+	public int Id { get; set; }
+    [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный E-mail")]
     [Required]
     public string? Email { get; set; }
+    [Required]
+	public string? Password { get; set; }
 }
+

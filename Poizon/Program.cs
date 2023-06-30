@@ -1,20 +1,12 @@
-﻿using Poizon.DAL;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Poizon.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<PoizonContext>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
-
-var connection = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<PoizonContext>(opt => opt.UseNpgsql(connection));
 
 if (!app.Environment.IsDevelopment())
 {
@@ -34,4 +26,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
