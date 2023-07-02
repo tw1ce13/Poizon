@@ -23,14 +23,14 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Availability", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("ClothesId")
-                        .HasColumnType("integer");
+                    b.Property<long>("ClothesId")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Count")
                         .HasColumnType("integer");
@@ -44,11 +44,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Brand", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -61,11 +61,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -78,17 +78,17 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Clothes", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("integer");
+                    b.Property<long>("BrandId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("integer");
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Cost")
                         .HasColumnType("integer");
@@ -96,24 +96,24 @@ namespace Poizon.DAL.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<int>("ModelId")
-                        .HasColumnType("integer");
+                    b.Property<long>("ModelId")
+                        .HasColumnType("bigint");
 
                     b.Property<byte[]>("Photo")
                         .IsRequired()
                         .HasColumnType("bytea");
 
-                    b.Property<int>("SexId")
-                        .HasColumnType("integer");
+                    b.Property<long>("SexId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("SizeId")
-                        .HasColumnType("integer");
+                    b.Property<long>("SizeId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("StyleId")
-                        .HasColumnType("integer");
+                    b.Property<long>("StyleId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("SubCategoryId")
-                        .HasColumnType("integer");
+                    b.Property<long>("SubCategoryId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -134,13 +134,33 @@ namespace Poizon.DAL.Migrations
                     b.ToTable("Clothes");
                 });
 
-            modelBuilder.Entity("Poizon.Domain.Models.DiscountOnOrder", b =>
+            modelBuilder.Entity("Poizon.Domain.Models.DiscountOnItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Value")
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.HasKey("Id");
+
+                    b.ToTable("DiscountOnItems");
+                });
+
+            modelBuilder.Entity("Poizon.Domain.Models.DiscountOnOrder", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<int>("Count")
                         .HasColumnType("integer");
@@ -159,11 +179,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Model", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -176,20 +196,20 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("DiscountId")
-                        .HasColumnType("integer");
+                    b.Property<long>("DiscountId")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -202,17 +222,17 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.OrderClothes", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("ClothesId")
-                        .HasColumnType("integer");
+                    b.Property<long>("ClothesId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("integer");
+                    b.Property<long>("OrderId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -225,11 +245,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Sex", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -242,11 +262,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Size", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -259,11 +279,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.Style", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -276,11 +296,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.SubCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -293,11 +313,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -314,11 +334,11 @@ namespace Poizon.DAL.Migrations
 
             modelBuilder.Entity("Poizon.Domain.Models.UserInfo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<int>("Age")
                         .HasColumnType("integer");
@@ -329,8 +349,8 @@ namespace Poizon.DAL.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 

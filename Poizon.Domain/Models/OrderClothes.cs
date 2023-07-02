@@ -5,12 +5,12 @@ namespace Poizon.Domain.Models;
 
 public class OrderClothes
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
     [Required]
-    public int OrderId { get; set; }
+    public long OrderId { get; set; }
     [ForeignKey("OrderId")]
     public Order? Order { get; set; }
-    public int ClothesId { get; set; }
+    public long ClothesId { get; set; }
     [ForeignKey("ClothesId")]
     public Clothes? Clothes { get; set; }
 }
