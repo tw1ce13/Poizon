@@ -20,12 +20,14 @@
   <ItemGroup>
     <None Remove="Views\Home\" />
     <None Remove="Views\Shared\" />
+    <None Remove="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\fonts\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\img\" />

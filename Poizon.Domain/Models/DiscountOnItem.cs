@@ -2,10 +2,12 @@
 
 namespace Poizon.Domain.Models;
 
-public class Category
+public class DiscountOnItem
 {
 	public long Id { get; set; }
+	[Required]
+	public string? Name { get; set; }
     [Required]
-    public string? Name { get; set; }
+    public int Value { get; set; }
 }
 

@@ -28,6 +28,7 @@ public class PoizonContext : DbContext
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Clothes> Clothes { get; set; }
+    public DbSet<DiscountOnItem> DiscountOnItems { get; set; }
     public DbSet<DiscountOnOrder> DiscountsOnOrder { get; set; }
     public DbSet<Model> Models { get; set; }
     public DbSet<Order> Orders { get; set; }

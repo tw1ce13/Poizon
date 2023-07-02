@@ -15,7 +15,7 @@ namespace Poizon.DAL.Migrations
                 name: "Brands",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -28,7 +28,7 @@ namespace Poizon.DAL.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -38,10 +38,24 @@ namespace Poizon.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DiscountOnItems",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Value = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DiscountOnItems", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DiscountsOnOrder",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Value = table.Column<int>(type: "integer", nullable: false),
@@ -56,7 +70,7 @@ namespace Poizon.DAL.Migrations
                 name: "Models",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -69,7 +83,7 @@ namespace Poizon.DAL.Migrations
                 name: "Sexes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -82,7 +96,7 @@ namespace Poizon.DAL.Migrations
                 name: "Sizes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -95,7 +109,7 @@ namespace Poizon.DAL.Migrations
                 name: "Styles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -108,7 +122,7 @@ namespace Poizon.DAL.Migrations
                 name: "SubCategories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -121,7 +135,7 @@ namespace Poizon.DAL.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false)
@@ -135,15 +149,15 @@ namespace Poizon.DAL.Migrations
                 name: "Clothes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CategoryId = table.Column<int>(type: "integer", nullable: false),
-                    SubCategoryId = table.Column<int>(type: "integer", nullable: false),
-                    BrandId = table.Column<int>(type: "integer", nullable: false),
-                    ModelId = table.Column<int>(type: "integer", nullable: false),
-                    SizeId = table.Column<int>(type: "integer", nullable: false),
-                    StyleId = table.Column<int>(type: "integer", nullable: false),
-                    SexId = table.Column<int>(type: "integer", nullable: false),
+                    CategoryId = table.Column<long>(type: "bigint", nullable: false),
+                    SubCategoryId = table.Column<long>(type: "bigint", nullable: false),
+                    BrandId = table.Column<long>(type: "bigint", nullable: false),
+                    ModelId = table.Column<long>(type: "bigint", nullable: false),
+                    SizeId = table.Column<long>(type: "bigint", nullable: false),
+                    StyleId = table.Column<long>(type: "bigint", nullable: false),
+                    SexId = table.Column<long>(type: "bigint", nullable: false),
                     Photo = table.Column<byte[]>(type: "bytea", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Cost = table.Column<int>(type: "integer", nullable: false)
@@ -199,10 +213,10 @@ namespace Poizon.DAL.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    DiscountId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
+                    DiscountId = table.Column<long>(type: "bigint", nullable: false),
                     Price = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -226,9 +240,9 @@ namespace Poizon.DAL.Migrations
                 name: "UsersInfo",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: true),
                     Surname = table.Column<string>(type: "text", nullable: true),
                     Age = table.Column<int>(type: "integer", nullable: false)
@@ -248,9 +262,9 @@ namespace Poizon.DAL.Migrations
                 name: "Availabilities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ClothesId = table.Column<int>(type: "integer", nullable: false),
+                    ClothesId = table.Column<long>(type: "bigint", nullable: false),
                     Count = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -268,10 +282,10 @@ namespace Poizon.DAL.Migrations
                 name: "OrderClothes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    OrderId = table.Column<int>(type: "integer", nullable: false),
-                    ClothesId = table.Column<int>(type: "integer", nullable: false)
+                    OrderId = table.Column<long>(type: "bigint", nullable: false),
+                    ClothesId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -361,6 +375,9 @@ namespace Poizon.DAL.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Availabilities");
+
+            migrationBuilder.DropTable(
+                name: "DiscountOnItems");
 
             migrationBuilder.DropTable(
                 name: "OrderClothes");

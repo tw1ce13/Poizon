@@ -5,12 +5,12 @@ namespace Poizon.Domain.Models;
 
 public class Order
 {
-	public int Id { get; set; }
+	public long Id { get; set; }
 	[Required]
-	public int UserId { get; set; }
+	public long UserId { get; set; }
 	[ForeignKey("UserId")]
 	public User? User { get; set; }
-	public int DiscountId { get; set; }
+	public long DiscountId { get; set; }
 	[ForeignKey("DiscountId")]
 	public DiscountOnOrder? DiscountOnOrder { get; set; }
 	public int Price { get; set; }
