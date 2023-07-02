@@ -10,3 +10,15 @@
 /Users/nikitos/Projects/Poizon/Poizon.Domain/obj/Debug/net7.0/refint/Poizon.Domain.dll
 /Users/nikitos/Projects/Poizon/Poizon.Domain/obj/Debug/net7.0/Poizon.Domain.pdb
 /Users/nikitos/Projects/Poizon/Poizon.Domain/obj/Debug/net7.0/ref/Poizon.Domain.dll
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\bin\Debug\net7.0\Poizon.Domain.deps.json
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\bin\Debug\net7.0\Poizon.Domain.dll
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\bin\Debug\net7.0\Poizon.Domain.pdb
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\Poizon.Domain.csproj.AssemblyReference.cache
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\Poizon.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\Poizon.Domain.AssemblyInfoInputs.cache
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\Poizon.Domain.AssemblyInfo.cs
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\Poizon.Domain.csproj.CoreCompileInputs.cache
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\Poizon.Domain.dll
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\refint\Poizon.Domain.dll
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\Poizon.Domain.pdb
+C:\Users\egbur\source\repos\Poizon\Poizon.Domain\obj\Debug\net7.0\ref\Poizon.Domain.dll
