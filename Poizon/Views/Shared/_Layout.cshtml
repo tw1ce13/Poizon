@@ -14,10 +14,10 @@
     <header>
         <div class="header-content">
             <div class="logo">
-                <a asp-controller="Home" asp-action="Index">Tishamarket</a>
+                <a asp-controller="Main" asp-action="Index">Tishamarket</a>
             </div>
             <div class="links">
-                <a href="catalog.html" style="padding-top: 3vh;">Каталог</a>
+                <a asp-controller="Catalog" asp-action="ShowAll" style="padding-top: 3vh;">Каталог</a>
                 <a href="about.html" style="padding-top: 3vh;">О нас</a>
                 <a href="#" class="cart-link"></a>
                 <a href="#" style="padding-top: 3vh;" class="login-button">Вход</a>
@@ -78,7 +78,7 @@
         <div class="items">
             <div class="links">
                 <a href="#" class="link">
-                    <img src="img/telega.png" alt="Link 2">
+                    <img src="../../../img/telega.png" alt="Link 2">
                 </a>
             </div>
             <p class="footer-text">© 2023 Tishamarket</p>

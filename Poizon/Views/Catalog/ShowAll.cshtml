@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="contenter">
+    <div class="rectangle-2" style="margin-top: 5vh;">
+        <div class="container">
+            <h1 class="about-store">Каталог</h1>
+            <div class="line-1"></div>
+        </div>
+    </div>
+    <main>
+        <div class="flex">
+            <button id="toggle-menu-button"></button>
+            <div class="content-menu">
+                <div class="sidebar">
+                    <aside>
+                        <ul class="category-menu">
+                            <li class="category">
+                                <a href="#">Одежда</a>
+                                <ul class="sub-category">
+                                    <li><a href="#">Куртки</a></li>
+                                    <li><a href="#">Футболки</a></li>
+                                    <li><a href="#">Худи</a></li>
+                                    <li><a href="#">Свитшоты</a></li>
+                                </ul>
+                            </li>
+                            <li class="category">
+                                <a href="#">Обувь</a>
+                                <ul class="sub-category">
+                                    <li><a href="#">Кеды</a></li>
+                                    <li><a href="#">Кроссовки</a></li>
+                                    <li><a href="#">Сланцы</a></li>
+                                </ul>
+                            </li>
+                            <li class="category">
+                                <a href="#">Аксессуары</a>
+                                <ul class="sub-category">
+                                    <li><a href="#">Сумки</a></li>
+                                    <li><a href="#">Ремни</a></li>
+                                    <li><a href="#">Головные уборы</a></li>
+                                    <li><a href="#">Шарфы</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <button class="close-menu-button">✕</button> <!-- Крестик для закрытия меню -->
+                    </aside>
+                </div>
+
+                <section class="product-list">
+                    @for (int i = 0; i < 25; i++)
+                        {
+                    <a href="" class="product-a">
+                        <div class="product">
+                            <img src="../../../img/snickers.png" alt="Product 1">
+                            <h3>Nike</h3>
+                            <p>4Runner</p>
+                            <span class="price">100 руб.</span>
+                            <a href="#" class="btn">Добавить в корзину</a>
+                        </div>
+                    </a>
+                        }
+                </section>
+            </div>
+        </div>
+    </main>
+</div>
+      
+
+
+
+
+
+<script>document.getElementById("toggle-menu-button").addEventListener("click", function () {
+        var sidebar = document.querySelector(".sidebar");
+        sidebar.classList.toggle("active");
+    });
+
+    document.querySelector(".close-menu-button").addEventListener("click", function () {
+        var sidebar = document.querySelector(".sidebar");
+        sidebar.classList.remove("active");
+    });
+</script>

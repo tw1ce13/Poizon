@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Poizon.Domain.Enums;
 
-namespace Poizon.Domain.Response
+namespace Poizon.Domain.Response;
+
+public interface IBaseResponse
 {
-    internal class BaseReponse
+    string? Description { get; set; }
+    StatusCode StatusCode { get; set; }
+}
+
+public interface IBaseResponse<T> : IBaseResponse
+{
+    T Data { get; set; }
+}
+
+public class BaseResponse<T> : IBaseResponse<T>
+{
+    public BaseResponse()
     {
     }
+
+    public string? Description { get; set; }
+    public StatusCode StatusCode { get; set; }
+    public T Data { get; set; }
 }

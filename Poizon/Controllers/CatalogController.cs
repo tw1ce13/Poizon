@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 namespace Poizon.Controllers;
 
-public class HomeController : Controller
+public class CatalogController : Controller
 {
-    public IActionResult Index()
+    public IActionResult ShowAll()
     {
         return View();
     }
 }
+

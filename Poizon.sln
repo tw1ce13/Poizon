@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{DB8F667A-945
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poizon.DAL", "Poizon.DAL\Poizon.DAL.csproj", "{6B4D83F7-18AC-41B5-BEE8-8F964B1620EE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CD228983-C73B-4E60-A4BB-097E866C4AAA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{21D5032D-CD6F-4D1B-8402-18D287ADA6C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poizon.Services", "Poizon.Services\Poizon.Services.csproj", "{5530D567-896B-46C8-B2B0-78636DF8339F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6B4D83F7-18AC-41B5-BEE8-8F964B1620EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B4D83F7-18AC-41B5-BEE8-8F964B1620EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B4D83F7-18AC-41B5-BEE8-8F964B1620EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5530D567-896B-46C8-B2B0-78636DF8339F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5530D567-896B-46C8-B2B0-78636DF8339F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5530D567-896B-46C8-B2B0-78636DF8339F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5530D567-896B-46C8-B2B0-78636DF8339F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,5 +49,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{07694556-7E45-403F-A9FB-1CA23449306E} = {754884B1-4B1B-49BE-9273-5B2B14FED47B}
 		{6B4D83F7-18AC-41B5-BEE8-8F964B1620EE} = {DB8F667A-9455-41F4-8C07-5A60E797EAF4}
+		{5530D567-896B-46C8-B2B0-78636DF8339F} = {21D5032D-CD6F-4D1B-8402-18D287ADA6C2}
 	EndGlobalSection
 EndGlobal

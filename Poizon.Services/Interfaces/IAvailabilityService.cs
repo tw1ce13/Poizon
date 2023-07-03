@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Poizon.Domain.Models;
+using Poizon.Domain.Response;
 
-namespace Poizon.Services.Interfaces
+namespace Poizon.Services.Interfaces;
+
+public interface IAvailabilityService : IBaseService<Availability>
 {
-    internal interface IAvailabilityService
-    {
-    }
+    Task<IBaseResponse<int>> GetCountByClothesId(long id);
 }
+

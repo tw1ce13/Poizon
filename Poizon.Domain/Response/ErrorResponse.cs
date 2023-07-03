@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Poizon.Domain.Enums;
 
 namespace Poizon.Domain.Response
 {
-    internal class ErrorResponse
+    public class ErrorResponse : IBaseResponse
     {
+        public string? Description { get; set; }
+        public StatusCode StatusCode { get; set; }
+        public string? Message { get; set; }
     }
 }
