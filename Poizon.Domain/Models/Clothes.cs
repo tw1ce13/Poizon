@@ -18,6 +18,11 @@ public class Clothes
     public SubCategory? SubCategory { get; set; }
 
     [Required]
+    public long SubSubCategoryId { get; set; }
+    [ForeignKey("SubSubCategoryId")]
+    public SubSubCategory? SubSubCategory { get; set; }
+
+    [Required]
     public long BrandId { get; set; }
     [ForeignKey("BrandId")]
     public Brand? Brand { get; set; }

@@ -25,6 +25,7 @@ public static class ServiceExtensions
         services.AddScoped<ISubCategoryService, SubCategoryService>();
         services.AddScoped<IUserInfoService, UserInfoService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<ISubSubCategoryService, SubSubCategoryService>();
 
         services.AddTransient<IAvailabilityRepository, AvailabilityRepository>();
         services.AddTransient<IBrandRepository, BrandRepository>();
@@ -41,5 +42,6 @@ public static class ServiceExtensions
         services.AddTransient<ISubCategoryRepository, SubCategoryRepository>();
         services.AddTransient<IUserInfoRepository, UserInfoRepository>();
         services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<ISubSubCategoryRepository, SubSubCategoryRepository>();
     }
 }

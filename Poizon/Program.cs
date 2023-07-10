@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Poizon;
 using Poizon.DAL;
@@ -14,6 +15,13 @@ builder.Services.AddLogging(loggingBuilder =>
     loggingBuilder.AddSerilog();
 });
 builder.Services.AddMyLibraryServices();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = new PathString("/Shared/_Layout");
+        options.AccessDeniedPath = new PathString("/Account/Register");
+    });
 
 var app = builder.Build();
 

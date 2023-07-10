@@ -39,5 +39,7 @@ public class PoizonContext : DbContext
     public DbSet<SubCategory> SubCategories { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserInfo> UsersInfo { get; set; }
+    public DbSet<SubSubCategory> SubSubCategories { get; set; }
+    
 }
 

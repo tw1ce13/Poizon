@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Poizon.Domain.Enums;
 
 namespace Poizon.Domain.Models;
 
@@ -10,5 +11,7 @@ public class User
     public string? Email { get; set; }
     [Required]
 	public string? Password { get; set; }
+    [Required]
+    public Role Role { get; set; }
 }
 

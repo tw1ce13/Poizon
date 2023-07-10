@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Poizon.Domain.Models;
 
-public class SubCategory
+public class SubSubCategory
 {
-	public long Id { get; set; }
+    public long Id { get; set; }
     [Required]
     public string? Name { get; set; }
     [Required]
-    public long CategoryId { get; set; }
-    [ForeignKey("CategoryId")]
-    public Category Category { get; set; }
+    public long SubCategoryId { get; set; }
+    [ForeignKey("SubCategoryId")]
+    public SubCategory SubCategory { get; set; }
 }
 
