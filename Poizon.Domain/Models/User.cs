@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Poizon.Domain.Enums;
 
 namespace Poizon.Domain.Models;
 
@@ -9,6 +10,9 @@ public class User
     [Required]
     public string? Email { get; set; }
     [Required]
-	public string? Password { get; set; }
+    [MinLength(5, ErrorMessage = "Пароль должен быть больше 4 символов")]
+    public string? Password { get; set; }
+    [Required]
+    public Role Role { get; set; }
 }
 

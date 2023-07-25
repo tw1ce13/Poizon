@@ -1,0 +1,86 @@
+﻿@using Poizon.Domain.Helpers;
+@model ClothesWithName
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = (Model.SubSubCategoryName + " " + Model.BrandName);
+}
+
+
+<div class="page-title">
+    <h1>@ViewBag.Title</h1>
+</div>
+<div class="container3">
+    <div class="product-wrapper">
+        <div class="product-gallery">
+            <div class="carousel">
+                @foreach (var photo in ViewBag.Photos)
+                {
+                    if (photo != null)
+                    {
+                        string base64Image = Convert.ToBase64String(photo);
+                        string imageSrc = string.Format("data:image/png;base64,{0}", base64Image);
+                        <div class="carousel-item">
+                            <img class="image-zoom" src="@imageSrc" data-zoom="@imageSrc" alt="Product image">
+                        </div>
+                    }
+                }
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-control prev">&#10094;</button>
+                <button class="carousel-control next">&#10095;</button>
+            </div>
+        </div>
+        <div class="product-details">
+            <h1>@Model.SubSubCategoryName @Model.BrandName</h1>
+            <div class="price">Cтоимость: @Model.Price ₽</div>
+            <div class="description">@Model.Description <br>Размер: @Model.SizeName <br></div>
+            <form method="post" asp-action="AddToBasket" asp-controller="Order">
+                <input asp-for="Id" value="@Model.Id" hidden />
+                <input asp-for="SubSubCategoryName" value="@Model.SubSubCategoryName" hidden />
+                <input asp-for="Price" value="@Model.Price" hidden />
+                <input asp-for="BrandName" value="@Model.BrandName" hidden />
+                <button class="btn" type="submit">Добавить в корзину</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>// Добавляем JavaScript для управления каруселью
+    // Добавляем JavaScript для управления каруселью
+    document.addEventListener("DOMContentLoaded", function () {
+        const carouselItems = document.querySelectorAll(".carousel-item");
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            if (index < 0) {
+                currentIndex = carouselItems.length - 1;
+            } else if (index >= carouselItems.length) {
+                currentIndex = 0;
+            }
+
+            carouselItems.forEach((item, i) => {
+                item.style.display = i === currentIndex ? "block" : "none";
+            });
+        }
+
+        function nextSlide() {
+            currentIndex++;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex--;
+            showSlide(currentIndex);
+        }
+
+        const prevButton = document.querySelector(".carousel-control.prev");
+        prevButton.addEventListener("click", prevSlide);
+
+        const nextButton = document.querySelector(".carousel-control.next");
+        nextButton.addEventListener("click", nextSlide);
+
+        // Показываем первый слайд
+        showSlide(currentIndex);
+    });</script>

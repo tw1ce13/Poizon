@@ -1,0 +1,53 @@
+﻿@using Poizon.Domain.ViewModel;
+@model LoginViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="close-button">&times;</div>
+<h2 class="form-title">Вход:</h2>
+<form class="registration-form" id="loginForm" method="POST" asp-controller="Account" asp-action="Login">
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input asp-for="Email" type="email" id="email" placeholder="Введите электронную почту" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Пароль:</label>
+        <input asp-for="Password" type="password" id="password" placeholder="Введите пароль" required>
+    </div>
+    <button type="submit" class="submit-button">Войти</button>
+</form>
+<p class="registration-link">Нет аккаунта? <a asp-action="Register" asp-controller="Account" class="registration-link-text">Регистрируйся</a></p>
+
+
+
+<style>
+    .registration-link {
+        text-align: center;
+        margin-top: 10px;
+        text-decoration: none;
+        font-family: "Grotesk";
+    }
+
+    .registration-link-text {
+        align-content: center;
+        color: blue;
+        text-decoration: none;
+        font-family: "Grotesk";
+        /* Дополнительные стили по вашему выбору */
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        // Открытие формы регистрации
+        $(".login-button").on("click", function () {
+            $(".registration-overlay").fadeIn();
+            $(".registration-form-container").css("right", "0");
+        });
+
+        // Закрытие формы регистрации
+        $(".close-button").on("click", function () {
+            $(".registration-overlay").fadeOut();
+            $(".registration-form-container").css("right", "-400px");
+        });
+    });
+    </script>

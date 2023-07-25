@@ -15,6 +15,7 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Poizon.DAL\Poizon.DAL.csproj">
@@ -29,6 +30,9 @@
     <None Remove="Controllers\" />
     <None Remove="Views\Catalog\" />
     <None Remove="Views\Main\" />
+    <None Remove="Views\Account\" />
+    <None Remove="Views\Info\" />
+    <None Remove="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Shared\" />
@@ -37,6 +41,9 @@
     <Folder Include="Controllers\" />
     <Folder Include="Views\Catalog\" />
     <Folder Include="Views\Main\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Info\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\img\" />

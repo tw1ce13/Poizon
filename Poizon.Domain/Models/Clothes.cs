@@ -18,6 +18,11 @@ public class Clothes
     public SubCategory? SubCategory { get; set; }
 
     [Required]
+    public long SubSubCategoryId { get; set; }
+    [ForeignKey("SubSubCategoryId")]
+    public SubSubCategory? SubSubCategory { get; set; }
+
+    [Required]
     public long BrandId { get; set; }
     [ForeignKey("BrandId")]
     public Brand? Brand { get; set; }
@@ -44,6 +49,11 @@ public class Clothes
 
     [Required]
     public byte[]? Photo { get; set; }
+    public byte[]? Photo1 { get; set; }
+    public byte[]? Photo2 { get; set; }
+    public byte[]? Photo3 { get; set; }
+    public byte[]? Photo4 { get; set; }
+    public byte[]? Photo5 { get; set; }
     public string? Description { get; set; }
     [Required]
     public int Cost { get; set; }

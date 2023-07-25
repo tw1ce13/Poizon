@@ -1,6 +1,10 @@
-﻿@{
+﻿@using Poizon.Domain.ViewModel;
+@model CatalogFilters
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Каталог";
 }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div class="contenter">
     <div class="rectangle-2" style="margin-top: 5vh;">
@@ -10,63 +14,177 @@
         </div>
     </div>
     <main>
-        <div class="flex">
-            <button id="toggle-menu-button"></button>
-            <div class="content-menu">
-                <div class="sidebar">
-                    <aside>
-                        <ul class="menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Одежда ▼</a>
-                                <ul class="submenu">
-                                    <li class="submenu-item">
-                                        <a class="submenu-link" href="#">Верхняя одежда</a>
-                                    </li>
-                                    <li class="submenu-item">
-                                        <a class="submenu-link" href="#">Штаны</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <button class="close-menu-button">✕</button> <!-- Крестик для закрытия меню -->
-                    </aside>
-                </div>
-                <section class="product-list">
-                    @for (int i = 0; i < 25; i++)
+        <div class="select-wrapper">
+            <div class="filter">
+                <select id="category">
+                    <option value="">Выберите категорию</option>
+                    @foreach (var item in ViewBag.Category)
                     {
-                        <a href="" class="product-a">
-                            <div class="product">
-                                <img src="../../../img/snickers.png" alt="Product 1">
-                                <h3>Nike</h3>
-                                <p>4Runner</p>
-                                <span class="price">100 руб.</span>
-                                <a href="#" class="btn">Добавить в корзину</a>
-                            </div>
-                        </a>
+                        <option value="@item.Id">@item.Name</option>
                     }
-                </section>
+                </select>
+            </div>
+
+            <div class="filter">
+                <select id="subcategory" data-url="@Url.Action("GetSubcategories", "Catalog")">
+                    <option value="">Выберите</option>
+                </select>
+
+            </div>
+            <div class="filter">
+                <select id="subsubcategory" data-url="@Url.Action("GetSubSubCategories", "Catalog")">
+                    <!-- Опции для подподкатегорий -->
+                    <option value="">Выберите</option>
+                </select>
+            </div>
+            <div class="filter">
+                <select id="brand">
+                    <!-- Опции для брендов -->
+                    <option value="">Выберите бренд</option>
+                    @foreach (var item in ViewBag.Brand)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                    <!-- Добавьте больше опций по мере необходимости -->
+                </select>
+            </div>
+            <div class="filter">
+                <select id="style">
+                    <!-- Опции для стилей -->
+                    <option value="">Выберите стиль</option>
+                    @foreach (var item in ViewBag.Style)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="filter">
+                <select id="gender">
+                    <!-- Опции для полов одежды -->
+                    <option value="">Выберите пол</option>
+                    @foreach (var item in ViewBag.Sex)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                    <!-- Добавьте больше опций по мере необходимости -->
+                </select>
             </div>
         </div>
+
+        <section class="product-list">
+            @foreach (var item in ViewBag.Data)
+            {
+                <a href="@Url.Action("ProductDetails", "Catalog", new { id = item.Id })" class="product-a">
+                    <div class="product">
+                        @{
+                            string base64Image = Convert.ToBase64String(item.Photo);
+                            string imageSrc = string.Format("data:image/png;base64,{0}", base64Image);
+                        }
+                        <img src="@imageSrc" alt="Product 1">
+                        <h3>@item.SubSubCategoryName</h3>
+                        <p>@item.BrandName</p>
+                        <span class="price">@item.Price ₽</span>
+                    </div>
+                </a>
+            }
+        </section>
     </main>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>$(document).ready(function () {
+    $("#category").change(function () {
+            var categoryId = $(this).val();
+            var subcategorySelect = $("#subcategory");
+            subcategorySelect.empty();
 
+            if (categoryId !== "") {
+                var url = subcategorySelect.data("url");
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: { categoryId: categoryId },
+                    dataType: "json",
+                    success: function (data) {
+                        data.forEach(function (item) {
+                            subcategorySelect.append($("<option>", {
+                                value: item.id,
+                                text: item.name
+                            }));
+                        });
+                        applyFilters();
+                    },
+                    error: function () {
+                        console.error("Ошибка при загрузке подкатегорий.");
+                    }
+                });
+            }
+        });
 
+    $("#category").change(function () {
+        var subCategoryId = $(this).val();
+        var subsubcategorySelect = $("#subsubcategory");
+        subsubcategorySelect.empty();
 
-
-
-<script>document.getElementById("toggle-menu-button").addEventListener("click", function () {
-        var sidebar = document.querySelector(".sidebar");
-        sidebar.classList.toggle("active");
+        if (subCategoryId !== "") {
+            var url = subsubcategorySelect.data("url");
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: { subCategoryId: subCategoryId },
+                dataType: "json",
+                success: function (data) {
+                    data.forEach(function (item) {
+                        subsubcategorySelect.append($("<option>", {
+                            value: item.id,
+                            text: item.name
+                        }));
+                    });
+                    applyFilters();
+                },
+                error: function () {
+                    console.error("Ошибка при загрузке подкатегорий.");
+                }
+            });
+        }
     });
+    function applyFilters() {
+            var categoryId = $("#category").val();
+            var subcategoryId = $("#subcategory").val();
+            var subsubcategoryId = $("#subsubcategory").val();
+            var brandId = $("#brand").val();
+            var styleId = $("#style").val();
+            var genderId = $("#gender").val();
 
-    document.querySelector(".close-menu-button").addEventListener("click", function () {
-        var sidebar = document.querySelector(".sidebar");
-        sidebar.classList.remove("active");
+            // Create an object with the selected values
+            var filters = {
+                CategoryId: categoryId || 0,
+                SubCategoryId: subcategoryId || 0,
+                SubSubCategoryId: subsubcategoryId || 0,
+                BrandId: brandId || 0,
+                StyleId: styleId || 0,
+                GenderId: genderId || 0
+            };
+
+            // Send the data to the server using AJAX
+            $.ajax({
+                url: "@Url.Action("ShowWithFilters", "Catalog")",
+                type: "POST",
+                data: JSON.stringify(filters), // Convert the object to JSON
+                contentType: "application/json",
+                dataType: "html",
+                success: function (data) {
+                    // Update the product list with the filtered results
+                    $(".product-list").html(data);
+                },
+                error: function () {
+                    console.error("Error while applying filters.");
+                }
+            });
+        }
     });</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- Подключение jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> <!-- Подключение Bootstrap JS -->
+
 <script>document.addEventListener('DOMContentLoaded', function () {
         var navItems = document.querySelectorAll('.nav-item');
 
@@ -82,6 +200,8 @@
             }
         });
     });</script>
+
+
 
 
 
@@ -122,7 +242,7 @@
         display: block;
         color: #555;
         font-size: 16px;
-        font-family:"Grotesk";
+        font-family: "Grotesk";
         text-decoration: none;
     }
 
@@ -130,4 +250,70 @@
         max-height: 500px; /* Укажите максимальную высоту, достаточную для отображения всех пунктов подменю */
         transition: max-height 0.9s ease-in;
     }
+
+    .select-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Добавим отступы между элементами с равными отступами от краев экрана */
+        margin: 0 -5px; /* Добавим отрицательные отступы, чтобы скорректировать равномерное распределение элементов */
+    }
+
+    /* Стилизация элементов "select" */
+    select {
+        font-size: 16px; /* Размер шрифта */
+        padding: 8px; /* Внутренний отступ */
+        border: 1px solid #ccc; /* Граница */
+        border-radius: 4px; /* Закругление углов */
+        width: 200px; /* Ширина элемента */
+        background-color: #fff; /* Цвет фона */
+        color: #333; /* Цвет текста */
+        margin: 5px; /* Добавим отступы между элементами */
+    }
+
+        /* Изменение стиля при наведении на элемент "select" */
+        select:hover {
+            border-color: #999; /* Цвет границы при наведении */
+        }
+
+        /* Изменение стиля при активации элемента "select" */
+        select:focus {
+            border-color: #555; /* Цвет границы при активации */
+            outline: none; /* Убрать стандартное контурное событие фокуса */
+        }
+
+        /* Убрать стандартную стрелку выпадающего списка в Chrome и Safari */
+        select::-webkit-outer-spin-button,
+        select::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Убрать стандартный стиль кнопки выпадающего списка в Firefox */
+        select::-moz-focus-inner {
+            border: 0;
+        }
+
+        /* Убрать стандартные стили для стрелки выпадающего списка в Firefox */
+        select::after {
+            content: '\f0d7'; /* Юникод-символ стрелки (можно заменить на другой символ) */
+            font-family: FontAwesome; /* Использование шрифта FontAwesome (замените на свой шрифт) */
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none; /* Скрыть элемент от событий мыши */
+        }
+
+        /* Стили для выпадающего списка */
+        select option {
+            font-size: 14px;
+            padding: 8px;
+            color: #333;
+            background-color: #fff;
+        }
+
+            /* Изменение стиля при наведении на элемент списка */
+            select option:hover {
+                background-color: #f2f2f2;
+            }
 </style>
