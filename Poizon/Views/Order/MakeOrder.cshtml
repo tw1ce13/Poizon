@@ -1,0 +1,101 @@
+﻿
+@using Poizon.Domain.ViewModel;
+@model UserViewModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Оформление заказа";
+}
+
+<form id="order-form" method="post" asp-action="MakeOrder" asp-controller="Order">
+    <div>
+        <label for="phone">Номер телефона</label>
+        <input type="text" id="phone"  asp-for="PhoneNumber" required>
+    </div>
+    <div>
+        <label for="telegram">Ник в телеграм</label>
+        <input type="text" id="telegram" asp-for="TelegramName" >
+    </div>
+    <div>
+        <label for="vk">Ссылка на ВК</label>
+        <input type="text" id="vk" asp-for="Vk" >
+    </div>
+    <div>
+        <label for="address">Адрес доставки </label>
+        <input type="text" id="address" asp-for="Address"  required>
+    </div>
+    <div>
+        <label for="comment">Комментарий к заказу</label>
+        <textarea id="comment" asp-for="Comment"></textarea>
+        <input type="text" id="address" asp-for="Price" value="@ViewBag.Price" hidden>
+    </div>
+    <button type="submit">Заказать</button>
+</form>
+<div id="total-price" style="display: none;">Итоговая стоимость: @ViewBag.Price ₽</div>
+<style>
+    body {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    h2 {
+        text-align: center;
+        color: #444;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #444;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+        button:hover {
+            background-color: #555;
+        }
+    #total-price {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #555;
+        margin-top: 20px;
+        padding: 10px;
+        border: 2px solid #555;
+        border-radius: 4px;
+        background-color: #f7f7f7;
+    }
+</style>

@@ -26,8 +26,12 @@
                     <h3 class="fs-sm mb-0 text-muted">Панель управления</h3>
                 </div>
                 <ul class="list-unstyled mb-0">
-                    <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3"  style="text-decoration: none; color: black; font-family: 'Grotesk'; font-size: 18px;"><i class="ci-bag opacity-60 me-2"></i>Заказы<span class="fs-sm text-muted ms-auto"></span></a></li>
-                    <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3"  style="text-decoration: none; color: black; font-family: 'Grotesk'; font-size: 18px;"><i class="ci-help opacity-60 me-2"></i>Купоны<span class="fs-sm text-muted ms-auto"></span></a></li>
+                    <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" style="text-decoration: none; color: black; font-family: 'Grotesk'; font-size: 18px;"><i class="ci-bag opacity-60 me-2"></i>Заказы<span class="fs-sm text-muted ms-auto"></span></a></li>
+                    <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" style="text-decoration: none; color: black; font-family: 'Grotesk'; font-size: 18px;"><i class="ci-help opacity-60 me-2"></i>Купоны<span class="fs-sm text-muted ms-auto"></span></a></li>
+                    @if (User.IsInRole("Admin"))
+                        {
+                    <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" asp-action="AddClothes" asp-controller="Catalog" style="text-decoration: none; color: black; font-family: 'Grotesk'; font-size: 18px;"><i class="ci-help opacity-60 me-2"></i>Добавить товар<span class="fs-sm text-muted ms-auto"></span></a></li>
+                        }
                 </ul>
                 <div class="bg-secondary px-4 py-3">
                     <h3 class="fs-sm mb-0 text-muted">Личные данные</h3>

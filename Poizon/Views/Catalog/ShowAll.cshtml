@@ -148,6 +148,20 @@
             });
         }
     });
+    $("#brand").change(function () {
+        // ... (existing code)
+        applyFilters();
+    });
+
+    $("#style").change(function () {
+        // ... (existing code)
+        applyFilters();
+    });
+
+    $("#gender").change(function () {
+        // ... (existing code)
+        applyFilters();
+    });
     function applyFilters() {
             var categoryId = $("#category").val();
             var subcategoryId = $("#subcategory").val();

@@ -34,17 +34,40 @@
         <div class="product-details">
             <h1>@Model.SubSubCategoryName @Model.BrandName</h1>
             <div class="price">Cтоимость: @Model.Price ₽</div>
-            <div class="description">@Model.Description <br>Размер: @Model.SizeName <br></div>
+            <div class="description">@Model.Description <br>Размер: @Model.SizeName <br>Одежда: @Model.SexName <br>Стиль: @Model.StyleName </div>
             <form method="post" asp-action="AddToBasket" asp-controller="Order">
                 <input asp-for="Id" value="@Model.Id" hidden />
                 <input asp-for="SubSubCategoryName" value="@Model.SubSubCategoryName" hidden />
                 <input asp-for="Price" value="@Model.Price" hidden />
+                <input asp-for="SizeName" value="@Model.SizeName" hidden />
+                <input asp-for="SexName" value="@Model.SexName" hidden />
+                <input asp-for="StyleName" value="@Model.StyleName" hidden />
+                <input asp-for="ModelName" value="@Model.ModelName" hidden />
                 <input asp-for="BrandName" value="@Model.BrandName" hidden />
                 <button class="btn" type="submit">Добавить в корзину</button>
 
             </form>
         </div>
     </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <form method="post" asp-action="RewriteClothes" asp-controller="Catalog">
+            <input asp-for="Id" value="@Model.Id" hidden />
+            <input asp-for="SubSubCategoryName" value="@Model.SubSubCategoryName" hidden />
+            <input asp-for="Price" value="@Model.Price" hidden />
+            <input asp-for="BrandName" value="@Model.BrandName" hidden />
+            <input asp-for="StyleName" value="@Model.StyleName" hidden />
+            <input asp-for="SubCategoryName" value="@Model.SubCategoryName" hidden />
+            <input asp-for="CategoryName" value="@Model.CategoryName" hidden />
+            <input asp-for="ModelName" value="@Model.ModelName" hidden />
+            <input asp-for="SizeName" value="@Model.SizeName" hidden />
+            <input asp-for="Description" value="@Model.Description" hidden />
+            <input asp-for="Price" value="@Model.Price" hidden />
+            <input asp-for="SexName" value="@Model.SexName" hidden />
+            <button class="btn" type="submit">Изменить</button>
+
+        </form>
+    }
 </div>
 
 <script>// Добавляем JavaScript для управления каруселью

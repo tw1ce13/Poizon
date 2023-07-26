@@ -467,6 +467,8 @@ aside {
 
 .product img {
     max-width: 100%;
+    max-height: 180px;
+    object-fit:fill;
 }
 
 .product h3 {
@@ -1188,7 +1190,7 @@ input[type="text"] {
 
     .carousel img {
         max-width: 700px;
-        height: auto; /* Adjust this value as needed to set the desired image height */
+        max-height: 700px; /* Adjust this value as needed to set the desired image height */
         border-radius: 10px;
         object-fit: fill; /* This will make sure the image fills the container while maintaining its aspect ratio */
         cursor: pointer; /* Добавим курсор-указатель при наведении на фотографии */
@@ -1295,5 +1297,42 @@ input[type="text"] {
     }
 }
 
+@keyframes drawCheck {
+    0% {
+        width: 0;
+        height: 0;
+        border: 5px solid transparent;
+        transform: rotate(45deg);
+    }
 
-</style >
+    100% {
+        width: 120px;
+        height: 120px;
+        border: 5px solid #00b300;
+        transform: rotate(45deg);
+    }
+}
+
+.error-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 100px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.btn-back {
+    margin-top: 20px;
+}

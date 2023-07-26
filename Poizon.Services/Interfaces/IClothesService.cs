@@ -18,5 +18,7 @@ public interface IClothesService : IBaseService<Clothes>
     Task<IBaseResponse<IEnumerable<Clothes>>> GetClothesBySizeId(long id);
     Task<IBaseResponse<IEnumerable<Clothes>>> GetClothesByCost(long minCost, long maxCost);
     Task<IBaseResponse<ClothesWithName>> GetByIdWithName(long id);
+    Task<IBaseResponse<ClothesWithName>> AddClothesByAdmin(ClothesWithName clothes);
+    Task<IBaseResponse<ClothesWithName>> UpdateClothesByAdmin(ClothesWithName clothes);
 }
 

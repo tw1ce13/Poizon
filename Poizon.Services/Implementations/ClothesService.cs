@@ -55,6 +55,121 @@ public class ClothesService : IClothesService
         return baseResponse;
     }
 
+    public async Task<IBaseResponse<ClothesWithName>> AddClothesByAdmin(ClothesWithName clothes)
+    {
+        int categoryNum, subCategoryNum, subSubCategoryNum = 0;
+        int.TryParse(clothes.CategoryName, out categoryNum);
+        int.TryParse(clothes.SubCategoryName, out subCategoryNum);
+        int.TryParse(clothes.SubSubCategoryName, out subSubCategoryNum);
+        await AddIfNotExist(clothes);
+        var brand = await _brandRepository.GetBrandByName(clothes.BrandName);
+        var category = await _categoryRepository.GetById(categoryNum);
+        var subCategory = await _subCategoryRepository.GetById(subCategoryNum);
+        var subSubCategory = await _subSubCategoryRepository.GetById(subSubCategoryNum);
+        var model = await _modelRepository.GetModelByName(clothes.ModelName);
+        var size = await _sizeRepository.GetSizeByName(clothes.SizeName);
+        var style = await _styleRepository.GetStyleByName(clothes.StyleName);
+        var sex = await _sexRepository.GetSexByName(clothes.SexName);
+
+        // Теперь вы можете создать объект с именами вместо ID
+        var cloth = new Clothes
+        {
+            BrandId = brand.Id,
+            CategoryId = category.Id,
+            SubCategoryId = subCategory.Id,
+            SubSubCategoryId = subSubCategory.Id,
+            ModelId = model.Id,
+            SizeId = size.Id,
+            StyleId = style.Id,
+            SexId = sex.Id,
+            Cost = clothes.Price,
+            Photo = clothes.Photo,
+            Photo1 = clothes.Photo1,
+            Photo2 = clothes.Photo2,
+            Photo3 = clothes.Photo3,
+            Photo4 = clothes.Photo4,
+            Photo5 = clothes.Photo5,
+            Description = clothes.Description
+        };
+        await _clothesRespository.Add(cloth);
+        var clothesWithName = new ClothesWithName
+        {
+            Id = cloth.Id,
+            BrandName = brand.Name,
+            CategoryName = category.Name,
+            SubCategoryName = subCategory.Name,
+            SubSubCategoryName = subSubCategory.Name,
+            ModelName = model.Name,
+            SizeName = size.Name,
+            StyleName = style.Name,
+            SexName = sex.Name,
+            Price = clothes.Price,
+            Photo = clothes.Photo,
+            Photo1 = clothes.Photo1,
+            Photo2 = clothes.Photo2,
+            Photo3 = clothes.Photo3,
+            Photo4 = clothes.Photo4,
+            Photo5 = clothes.Photo5,
+            Description = clothes.Description
+        };
+        return new BaseResponse<ClothesWithName>
+        {
+            Data = clothesWithName,
+            Description = "Success",
+            StatusCode = Domain.Enums.StatusCode.OK
+        };
+    }
+
+    private async Task AddIfNotExist(ClothesWithName clothes)
+    {
+        var brand = await _brandRepository.GetBrandByName(clothes.BrandName);
+        if (brand == null)
+        {
+            brand = new Brand
+            {
+                Name = clothes.BrandName
+            };
+            await _brandRepository.Add(brand);
+        }
+        var model = await _modelRepository.GetModelByName(clothes.ModelName);
+        if (model == null)
+        {
+            model = new Model
+            {
+                Name = clothes.ModelName,
+                BrandId = (await _brandRepository.GetBrandByName(clothes.BrandName)).Id
+            };
+            await _modelRepository.Add(model);
+        }
+        var size = await _sizeRepository.GetSizeByName(clothes.SizeName);
+        if (size == null)
+        {
+            size = new Size
+            {
+                Name = clothes.SizeName
+            };
+            await _sizeRepository.Add(size);
+        }
+        var sex = await _sexRepository.GetSexByName(clothes.SexName);
+        if (sex == null)
+        {
+            sex = new Sex
+            {
+                Name = clothes.SexName
+            };
+            await _sexRepository.Add(sex);
+        }
+        var style = await _styleRepository.GetStyleByName(clothes.StyleName);
+        if (style == null)
+        {
+            style = new Style
+            {
+                Name = clothes.StyleName
+            };
+            await _styleRepository.Add(style);
+        }
+    }
+
     public async Task<IBaseResponse<Clothes>> Delete(Clothes clothes)
     {
         var baseResponse = new BaseResponse<Clothes>();
@@ -475,6 +590,72 @@ public class ClothesService : IClothesService
         {
             Description = "Error",
             StatusCode = Domain.Enums.StatusCode.Error
+        };
+    }
+
+    public async Task<IBaseResponse<ClothesWithName>> UpdateClothesByAdmin(ClothesWithName clothes)
+    {
+        int categoryNum, subCategoryNum, subSubCategoryNum = 0;
+        int.TryParse(clothes.CategoryName, out categoryNum);
+        int.TryParse(clothes.SubCategoryName, out subCategoryNum);
+        int.TryParse(clothes.SubSubCategoryName, out subSubCategoryNum);
+        await AddIfNotExist(clothes);
+        var brand = await _brandRepository.GetBrandByName(clothes.BrandName);
+        var category = await _categoryRepository.GetById(categoryNum);
+        var subCategory = await _subCategoryRepository.GetById(subCategoryNum);
+        var subSubCategory = await _subSubCategoryRepository.GetById(subSubCategoryNum);
+        var model = await _modelRepository.GetModelByName(clothes.ModelName);
+        var size = await _sizeRepository.GetSizeByName(clothes.SizeName);
+        var style = await _styleRepository.GetStyleByName(clothes.StyleName);
+        var sex = await _sexRepository.GetSexByName(clothes.SexName);
+
+        // Теперь вы можете создать объект с именами вместо ID
+        var cloth = new Clothes
+        {
+            Id = clothes.Id,
+            BrandId = brand.Id,
+            CategoryId = category.Id,
+            SubCategoryId = subCategory.Id,
+            SubSubCategoryId = subSubCategory.Id,
+            ModelId = model.Id,
+            SizeId = size.Id,
+            StyleId = style.Id,
+            SexId = sex.Id,
+            Cost = clothes.Price,
+            Photo = clothes.Photo,
+            Photo1 = clothes.Photo1,
+            Photo2 = clothes.Photo2,
+            Photo3 = clothes.Photo3,
+            Photo4 = clothes.Photo4,
+            Photo5 = clothes.Photo5,
+            Description = clothes.Description
+        };
+        await _clothesRespository.Update(cloth);
+        var clothesWithName = new ClothesWithName
+        {
+            Id = cloth.Id,
+            BrandName = brand.Name,
+            CategoryName = category.Name,
+            SubCategoryName = subCategory.Name,
+            SubSubCategoryName = subSubCategory.Name,
+            ModelName = model.Name,
+            SizeName = size.Name,
+            StyleName = style.Name,
+            SexName = sex.Name,
+            Price = clothes.Price,
+            Photo = clothes.Photo,
+            Photo1 = clothes.Photo1,
+            Photo2 = clothes.Photo2,
+            Photo3 = clothes.Photo3,
+            Photo4 = clothes.Photo4,
+            Photo5 = clothes.Photo5,
+            Description = clothes.Description
+        };
+        return new BaseResponse<ClothesWithName>
+        {
+            Data = clothesWithName,
+            Description = "Success",
+            StatusCode = Domain.Enums.StatusCode.OK
         };
     }
 }

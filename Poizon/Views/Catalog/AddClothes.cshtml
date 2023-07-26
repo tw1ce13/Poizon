@@ -1,0 +1,217 @@
+﻿@using Poizon.Domain.Helpers;
+@model ClothesWithName
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Добавление";
+}
+<style>
+    /* Ваши стили для формы здесь */
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form-select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form-textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+    }
+
+    .form-submit {
+        background-color: #2cc7c1;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+<div class="form-container">
+    <h2>Заполните форму:</h2>
+    <form asp-action="AddClothes" asp-controller="Catalog" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="form-label" for="brandName">Название бренда:</label>
+            <input id="brandName" asp-for="BrandName" type="text" class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="categoryName">Выберите категорию:</label>
+            
+            <select id="category" asp-for="CategoryName" class="form-select">
+                <option value="">Выберите</option>
+                @foreach (var item in ViewBag.Category)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+                <!-- Добавьте другие варианты категорий здесь -->
+            </select>
+            <input id="brandName" asp-for="CategoryName" type="text" value="" hidden>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="subCategoryName">Выберите подкатегорию:</label>
+            <select id="subcategory" asp-for="SubCategoryName" class="form-select" data-url="@Url.Action("GetSubcategories", "Catalog")">
+                <option value="">Выберите</option>
+            </select>
+            <input id="brandName" asp-for="SubCategoryName" type="text" value="" hidden>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="subSubCategoryName">Выберите подподкатегорию:</label>
+            <select id="subsubcategory" asp-for="SubSubCategoryName" class="form-select" data-url="@Url.Action("GetSubSubcategories", "Catalog")">
+                <option value="">Выберите</option>
+            </select>
+            <input id="brandName" asp-for="SubSubCategoryName" type="text" value="" hidden>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="modelName">Модель:</label>
+            <input type="text" id="modelName" asp-for="ModelName" class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="sexName">Пол:</label>
+            <input type="text" id="sexName" asp-for="SexName" class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="sizeName">Размер:</label>
+            <input type="text" id="sizeName" asp-for="SizeName" class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="styleName">Стиль:</label>
+            <input type="text" id="styleName" asp-for="StyleName" class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="price">Цена:</label>
+            <input type="number" id="price" asp-for="Price" class="form-input">
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label" for="photo">Фотография:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" class="form-input">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="photo">Фотография:</label>
+            <input type="file" id="photo" name="photo1" accept="image/*" class="form-input">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="photo">Фотография:</label>
+            <input type="file" id="photo" name="photo2" accept="image/*" class="form-input">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="photo">Фотография:</label>
+            <input type="file" id="photo" name="photo3" accept="image/*" class="form-input">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="photo">Фотография:</label>
+            <input type="file" id="photo" name="photo4" accept="image/*" class="form-input">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="photo">Фотография:</label>
+            <input type="file" id="photo" name="photo5" accept="image/*" class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="description">Описание:</label>
+            <textarea id="description" asp-for="Description" rows="4" class="form-textarea"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="form-submit">Отправить</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#category").change(function () {
+            var categoryId = $(this).val();
+            var subcategorySelect = $("#subcategory");
+            subcategorySelect.empty();
+
+            if (categoryId !== "") {
+                var url = subcategorySelect.data("url");
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: { categoryId: categoryId },
+                    dataType: "json",
+                    success: function (data) {
+                        data.forEach(function (item) {
+                            subcategorySelect.append($("<option>", {
+                                value: item.id,
+                                text: item.name
+                            }));
+                        });
+                    },
+                    error: function () {
+                        console.error("Ошибка при загрузке подкатегорий.");
+                    }
+                });
+            }
+        });
+
+        $("#category").change(function () {
+            var subCategoryId = $(this).val();
+            var subsubcategorySelect = $("#subsubcategory");
+            subsubcategorySelect.empty();
+
+            if (subCategoryId !== "") {
+                var url = subsubcategorySelect.data("url");
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: { subCategoryId: subCategoryId },
+                    dataType: "json",
+                    success: function (data) {
+                        data.forEach(function (item) {
+                            subsubcategorySelect.append($("<option>", {
+                                value: item.id,
+                                text: item.name
+                            }));
+                        });
+                    },
+                    error: function () {
+                        console.error("Ошибка при загрузке подкатегорий.");
+                    }
+                });
+            }
+        });
+    });
+</script>
