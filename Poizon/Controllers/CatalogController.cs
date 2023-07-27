@@ -105,8 +105,10 @@ public class CatalogController : Controller
     [HttpGet]
     public async Task<IActionResult> AddClothes()
     {
-        var baseResponse = await _categoryService.GetAll();
-        ViewBag.Category = baseResponse.Data;
+        var baseResponseCategory = await _categoryService.GetAll();
+        var baseResponseSex = await _sexService.GetAll();
+        ViewBag.Sex = baseResponseSex.Data; 
+        ViewBag.Category = baseResponseCategory.Data;
         return View();
     }
 

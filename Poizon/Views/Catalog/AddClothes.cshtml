@@ -62,12 +62,12 @@
     <h2>Заполните форму:</h2>
     <form asp-action="AddClothes" asp-controller="Catalog" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label class="form-label" for="brandName">Название бренда:</label>
+            <label class="form-label" for="brandName">Название бренда: (Обязательно к заполнению)</label>
             <input id="brandName" asp-for="BrandName" type="text" class="form-input">
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="categoryName">Выберите категорию:</label>
+            <label class="form-label" for="categoryName">Выберите категорию: (Обязательно к заполнению)</label>
             
             <select id="category" asp-for="CategoryName" class="form-select">
                 <option value="">Выберите</option>
@@ -81,49 +81,51 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="subCategoryName">Выберите подкатегорию:</label>
-            <select id="subcategory" asp-for="SubCategoryName" class="form-select" data-url="@Url.Action("GetSubcategories", "Catalog")">
-                <option value="">Выберите</option>
-            </select>
-            <input id="brandName" asp-for="SubCategoryName" type="text" value="" hidden>
+            <label class="form-label" for="modelName">Подкатегория (Обязательно к заполнению):</label>
+            <input type="text" id="subcategoryname" asp-for="SubCategoryName" class="form-input">
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="subSubCategoryName">Выберите подподкатегорию:</label>
-            <select id="subsubcategory" asp-for="SubSubCategoryName" class="form-select" data-url="@Url.Action("GetSubSubcategories", "Catalog")">
-                <option value="">Выберите</option>
-            </select>
-            <input id="brandName" asp-for="SubSubCategoryName" type="text" value="" hidden>
+            <label class="form-label" for="modelName">Подподкатегория: (Обязательно к заполнению)</label>
+            <input type="text" id="subsubcategoryname" asp-for="SubSubCategoryName" class="form-input">
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="modelName">Модель:</label>
+            <label class="form-label" for="modelName">Модель: (Обязательно к заполнению)</label>
             <input type="text" id="modelName" asp-for="ModelName" class="form-input">
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="sexName">Пол:</label>
-            <input type="text" id="sexName" asp-for="SexName" class="form-input">
+            <label class="form-label">Выберите пол: (Обязательно к заполнению)</label>
+            <select id="category" asp-for="SexName" class="form-select">
+                <option value="">Выберите</option>
+                @foreach (var item in ViewBag.Sex)
+                {
+                    <option value="@item.Name">@item.Name</option>
+                }
+                <!-- Добавьте другие варианты категорий здесь -->
+            </select>
+            <input id="brandName" asp-for="SexName" type="text" value="" hidden>
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="sizeName">Размер:</label>
+            <label class="form-label" for="sizeName">Размер: (Обязательно к заполнению)</label>
             <input type="text" id="sizeName" asp-for="SizeName" class="form-input">
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="styleName">Стиль:</label>
+            <label class="form-label" for="styleName">Стиль: (Обязательно к заполнению)</label>
             <input type="text" id="styleName" asp-for="StyleName" class="form-input">
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="price">Цена:</label>
+            <label class="form-label" for="price">Цена: (Обязательно к заполнению)</label>
             <input type="number" id="price" asp-for="Price" class="form-input">
         </div>
 
 
         <div class="form-group">
-            <label class="form-label" for="photo">Фотография:</label>
+            <label class="form-label" for="photo">Фотография: (Обязательно к заполнению)</label>
             <input type="file" id="photo" name="photo" accept="image/*" class="form-input">
         </div>
         <div class="form-group">
@@ -148,7 +150,7 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label" for="description">Описание:</label>
+            <label class="form-label" for="description">Описание: (Обязательно к заполнению)</label>
             <textarea id="description" asp-for="Description" rows="4" class="form-textarea"></textarea>
         </div>
 
@@ -157,61 +159,3 @@
         </div>
     </form>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $("#category").change(function () {
-            var categoryId = $(this).val();
-            var subcategorySelect = $("#subcategory");
-            subcategorySelect.empty();
-
-            if (categoryId !== "") {
-                var url = subcategorySelect.data("url");
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    data: { categoryId: categoryId },
-                    dataType: "json",
-                    success: function (data) {
-                        data.forEach(function (item) {
-                            subcategorySelect.append($("<option>", {
-                                value: item.id,
-                                text: item.name
-                            }));
-                        });
-                    },
-                    error: function () {
-                        console.error("Ошибка при загрузке подкатегорий.");
-                    }
-                });
-            }
-        });
-
-        $("#category").change(function () {
-            var subCategoryId = $(this).val();
-            var subsubcategorySelect = $("#subsubcategory");
-            subsubcategorySelect.empty();
-
-            if (subCategoryId !== "") {
-                var url = subsubcategorySelect.data("url");
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    data: { subCategoryId: subCategoryId },
-                    dataType: "json",
-                    success: function (data) {
-                        data.forEach(function (item) {
-                            subsubcategorySelect.append($("<option>", {
-                                value: item.id,
-                                text: item.name
-                            }));
-                        });
-                    },
-                    error: function () {
-                        console.error("Ошибка при загрузке подкатегорий.");
-                    }
-                });
-            }
-        });
-    });
-</script>

@@ -44,7 +44,6 @@ header {
 .links .cart-link {
     display: inline-block;
     width: 40px;
-    height: 40px;
     background-image: url("../../img/order.png"); /* Замените "path/to/cart-image.png" на путь к вашей картинке */
     background-repeat: no-repeat;
     background-size: contain;

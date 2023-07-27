@@ -214,6 +214,12 @@ public class UserInfoService : IUserInfoService
         if (user == null)
         {
             await _userInfoRepository.Add(userInfo);
+            return baseResponse = new BaseResponse<UserInfo>
+            {
+                Data = userInfo,
+                Description = "Success",
+                StatusCode = Domain.Enums.StatusCode.OK
+            };
         }
         else
         {
@@ -222,12 +228,13 @@ public class UserInfoService : IUserInfoService
             user.Age = userInfo.Age;
 
             await _userInfoRepository.Update(user);
+            return baseResponse = new BaseResponse<UserInfo>
+            {
+                Data = user,
+                Description = "Success",
+                StatusCode = Domain.Enums.StatusCode.OK
+            };
         }
-        return baseResponse = new BaseResponse<UserInfo>
-        {
-            Data = user,
-            Description = "Success",
-            StatusCode = Domain.Enums.StatusCode.OK
-        };
+        
     }
 }

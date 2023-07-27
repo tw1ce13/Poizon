@@ -57,15 +57,13 @@ public class ClothesService : IClothesService
 
     public async Task<IBaseResponse<ClothesWithName>> AddClothesByAdmin(ClothesWithName clothes)
     {
-        int categoryNum, subCategoryNum, subSubCategoryNum = 0;
+        int categoryNum = 0;
         int.TryParse(clothes.CategoryName, out categoryNum);
-        int.TryParse(clothes.SubCategoryName, out subCategoryNum);
-        int.TryParse(clothes.SubSubCategoryName, out subSubCategoryNum);
         await AddIfNotExist(clothes);
         var brand = await _brandRepository.GetBrandByName(clothes.BrandName);
         var category = await _categoryRepository.GetById(categoryNum);
-        var subCategory = await _subCategoryRepository.GetById(subCategoryNum);
-        var subSubCategory = await _subSubCategoryRepository.GetById(subSubCategoryNum);
+        var subCategory = await _subCategoryRepository.GetSubCategoryByName(clothes.SubCategoryName);
+        var subSubCategory = await _subSubCategoryRepository.GetSubSubCategoryByName(clothes.SubSubCategoryName);
         var model = await _modelRepository.GetModelByName(clothes.ModelName);
         var size = await _sizeRepository.GetSizeByName(clothes.SizeName);
         var style = await _styleRepository.GetStyleByName(clothes.StyleName);
@@ -121,7 +119,8 @@ public class ClothesService : IClothesService
     }
 
     private async Task AddIfNotExist(ClothesWithName clothes)
-    {
+    { 
+
         var brand = await _brandRepository.GetBrandByName(clothes.BrandName);
         if (brand == null)
         {
@@ -130,6 +129,27 @@ public class ClothesService : IClothesService
                 Name = clothes.BrandName
             };
             await _brandRepository.Add(brand);
+        }
+        var subCategory = await _subCategoryRepository.GetSubCategoryByName(clothes.SubCategoryName);
+        int.TryParse(clothes.CategoryName, out int id);
+        if (subCategory == null)
+        {
+            subCategory = new SubCategory
+            {
+                Name = clothes.BrandName,
+                CategoryId = id
+            };
+            await _subCategoryRepository.Add(subCategory);
+        }
+        var subSubCategory = await _subSubCategoryRepository.GetSubSubCategoryByName(clothes.SubSubCategoryName);
+        if (subSubCategory == null)
+        {
+            subSubCategory = new SubSubCategory
+            {
+                Name = clothes.BrandName,
+                SubCategoryId = subCategory.Id
+            };
+            await _subSubCategoryRepository.Add(subSubCategory);
         }
         var model = await _modelRepository.GetModelByName(clothes.ModelName);
         if (model == null)
