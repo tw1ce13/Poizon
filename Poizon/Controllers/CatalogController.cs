@@ -112,6 +112,7 @@ public class CatalogController : Controller
         return View();
     }
 
+
     [HttpPost]
     public async Task<IActionResult> AddClothes(ClothesWithName clothes, IFormFile photo, IFormFile photo1, IFormFile photo2,
         IFormFile photo3, IFormFile photo4, IFormFile photo5)

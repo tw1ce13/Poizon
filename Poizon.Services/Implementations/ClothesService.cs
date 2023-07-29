@@ -57,11 +57,9 @@ public class ClothesService : IClothesService
 
     public async Task<IBaseResponse<ClothesWithName>> AddClothesByAdmin(ClothesWithName clothes)
     {
-        int categoryNum = 0;
-        int.TryParse(clothes.CategoryName, out categoryNum);
         await AddIfNotExist(clothes);
         var brand = await _brandRepository.GetBrandByName(clothes.BrandName);
-        var category = await _categoryRepository.GetById(categoryNum);
+        var category = await _categoryRepository.GetCategoryByName(clothes.CategoryName);
         var subCategory = await _subCategoryRepository.GetSubCategoryByName(clothes.SubCategoryName);
         var subSubCategory = await _subSubCategoryRepository.GetSubSubCategoryByName(clothes.SubSubCategoryName);
         var model = await _modelRepository.GetModelByName(clothes.ModelName);
@@ -131,13 +129,13 @@ public class ClothesService : IClothesService
             await _brandRepository.Add(brand);
         }
         var subCategory = await _subCategoryRepository.GetSubCategoryByName(clothes.SubCategoryName);
-        int.TryParse(clothes.CategoryName, out int id);
+        var category = await _categoryRepository.GetCategoryByName(clothes.CategoryName);
         if (subCategory == null)
         {
             subCategory = new SubCategory
             {
-                Name = clothes.BrandName,
-                CategoryId = id
+                Name = clothes.SubCategoryName,
+                CategoryId = category.Id
             };
             await _subCategoryRepository.Add(subCategory);
         }
@@ -146,7 +144,7 @@ public class ClothesService : IClothesService
         {
             subSubCategory = new SubSubCategory
             {
-                Name = clothes.BrandName,
+                Name = clothes.SubSubCategoryName,
                 SubCategoryId = subCategory.Id
             };
             await _subSubCategoryRepository.Add(subSubCategory);
