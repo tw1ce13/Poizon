@@ -174,6 +174,8 @@ namespace Poizon.DAL.Migrations
 
                     b.HasIndex("BrandId");
 
+                    b.HasIndex("BrandId");
+
                     b.ToTable("Models");
                 });
 
