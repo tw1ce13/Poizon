@@ -1,21 +1,3 @@
-/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.DAL.deps.json
-/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.DAL.runtimeconfig.json
-/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.DAL.dll
-/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.DAL.pdb
-/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.Domain.dll
-/Users/nikitos/Projects/Poizon/Poizon.DAL/bin/Debug/net7.0/Poizon.Domain.pdb
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.csproj.AssemblyReference.cache
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.GeneratedMSBuildEditorConfig.editorconfig
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.AssemblyInfoInputs.cache
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.AssemblyInfo.cs
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.csproj.CoreCompileInputs.cache
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.csproj.CopyComplete
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.dll
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/refint/Poizon.DAL.dll
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.pdb
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/Poizon.DAL.genruntimeconfig.cache
-/Users/nikitos/Projects/Poizon/Poizon.DAL/obj/Debug/net7.0/ref/Poizon.DAL.dll
-<<<<<<< HEAD
 C:\Users\egbur\source\repos\Poizon\Poizon.DAL\bin\Debug\net7.0\Poizon.DAL.deps.json
 C:\Users\egbur\source\repos\Poizon\Poizon.DAL\bin\Debug\net7.0\Poizon.DAL.runtimeconfig.json
 C:\Users\egbur\source\repos\Poizon\Poizon.DAL\bin\Debug\net7.0\Poizon.DAL.dll
@@ -33,5 +15,3 @@ C:\Users\egbur\source\repos\Poizon\Poizon.DAL\obj\Debug\net7.0\refint\Poizon.DAL
 C:\Users\egbur\source\repos\Poizon\Poizon.DAL\obj\Debug\net7.0\Poizon.DAL.pdb
 C:\Users\egbur\source\repos\Poizon\Poizon.DAL\obj\Debug\net7.0\Poizon.DAL.genruntimeconfig.cache
 C:\Users\egbur\source\repos\Poizon\Poizon.DAL\obj\Debug\net7.0\ref\Poizon.DAL.dll
-=======
->>>>>>> 70c71037ae407a19c60d901f24730e9a3147e2e9
