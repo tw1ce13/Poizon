@@ -1,26 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/nikitos/Projects/Poizon/Poizon.Domain/Poizon.Domain.csproj": {}
+    "C:\\Users\\egbur\\source\\repos\\Poizon\\Poizon.Domain\\Poizon.Domain.csproj": {}
   },
   "projects": {
-    "/Users/nikitos/Projects/Poizon/Poizon.Domain/Poizon.Domain.csproj": {
+    "C:\\Users\\egbur\\source\\repos\\Poizon\\Poizon.Domain\\Poizon.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nikitos/Projects/Poizon/Poizon.Domain/Poizon.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\egbur\\source\\repos\\Poizon\\Poizon.Domain\\Poizon.Domain.csproj",
         "projectName": "Poizon.Domain",
-        "projectPath": "/Users/nikitos/Projects/Poizon/Poizon.Domain/Poizon.Domain.csproj",
-        "packagesPath": "/Users/nikitos/.nuget/packages/",
-        "outputPath": "/Users/nikitos/Projects/Poizon/Poizon.Domain/obj/",
+        "projectPath": "C:\\Users\\egbur\\source\\repos\\Poizon\\Poizon.Domain\\Poizon.Domain.csproj",
+        "packagesPath": "C:\\Users\\egbur\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\egbur\\source\\repos\\Poizon\\Poizon.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/nikitos/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\egbur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -60,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }

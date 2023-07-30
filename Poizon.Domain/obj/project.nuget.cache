@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "UIFEtso3HHVrlttLzaRrbahUC9opi9tNmgsEC5cdsUhknzRYsdir+zKfV3bcn1sVnTXJNBJekYXJJn9OwYqWoA==",
+  "dgSpecHash": "yG0hzY9HbVWr/Lj5V2+0BU/JxuX8br+E7Xdv6xrpOQ8GPgRGz/35SK30YrYFQvh8OdtsW3t9b63Fw0VbnbvQxg==",
   "success": true,
-  "projectFilePath": "/Users/nikitos/Projects/Poizon/Poizon.Domain/Poizon.Domain.csproj",
+  "projectFilePath": "C:\\Users\\egbur\\source\\repos\\Poizon\\Poizon.Domain\\Poizon.Domain.csproj",
   "expectedPackageFiles": [
-    "/Users/nikitos/.nuget/packages/system.formats.asn1/5.0.0/system.formats.asn1.5.0.0.nupkg.sha512",
-    "/Users/nikitos/.nuget/packages/system.security.cryptography.cng/5.0.0/system.security.cryptography.cng.5.0.0.nupkg.sha512"
+    "C:\\Users\\egbur\\.nuget\\packages\\system.formats.asn1\\5.0.0\\system.formats.asn1.5.0.0.nupkg.sha512",
+    "C:\\Users\\egbur\\.nuget\\packages\\system.security.cryptography.cng\\5.0.0\\system.security.cryptography.cng.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
