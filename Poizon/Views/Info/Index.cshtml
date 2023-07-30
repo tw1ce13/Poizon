@@ -1,0 +1,71 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Главная";
+}
+
+
+
+<div class="container" style="margin-top: 4vh;">
+    <h1 class="about-store">О нас</h1>
+    <div class="line-1"></div>
+</div>
+
+
+
+<section class="container-fluid py-3 py-md-5" style="background-color:rgb(255, 255, 255);">
+    <div class="container">
+        <div class="row align-items-center mb-2 pb-sm-3 pb-md-4">
+
+            <div class="col-md-7 col-lg-6 order-md-1 mb-4 mb-md-0">
+                <div class="position-relative">
+                    <img src="../../../img/clothes.png" class="d-block rounded-3" alt="Dashboard" style="box-shadow: 0 1.875rem 7.5rem -.625rem rgba(124,125,152, .2); max-width: 100%; height: auto;">
+                </div>
+            </div>
+
+            <div class="col-md-5 col-lg-6 col-xl-5 offset-xl-1 order-md-2 text-center text-md-start">
+                <p class="pb-2 mb-4 mb-xl-5" style="font-size: 20px; font-family: 'Grotesk';">
+                    Tishamarket — российский IT стартап решающий на рынке проблему импортозамещения в сегменте одежды, обуви и аксессуаров. Мы занимаемся выкупом и доставкой любых товаров с китайского маркетплейса Poizon в Китае.
+                    <br> С нами ваши любимые бренды будут стоить на <br> <span style="color: red; font-size: 30px;">30-50%</span> дешевле, чем в любом другом месте.
+                </p>
+                <hr>
+                <div class="d-flex flex-wrap flex-sm-nowrap justify-content-center justify-content-md-between pt-3">
+                    <img src="../../../img/jordan.png" width="48" class="d-block m-2 mx-md-0" alt="Bitcoin">
+                    <img src="../../../img/adidas.png" width="48" class="d-block m-2 mx-md-0" alt="Ens">
+                    <img src="../../../img/asics.png" width="48" class="d-block m-2 mx-md-0" alt="Tether">
+                    <img src="../../../img/newbalance.png" width="48" class="d-block m-2 mx-md-0" alt="Alqo">
+                    <img src="../../../img/carhartt.png" width="48" class="d-block m-2 mx-md-0" alt="BlockFi">
+                    <img src="../../../img/nike.jpeg" width="48" class="d-block m-2 mx-md-0" alt="Bitcoin">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="py-15 py-xl-20 overflow-hidden" style="margin-bottom: 10vh; font-family: 'Grotesk';">
+    <div class="container">
+        <div class="row justify-content-center position-relative">
+            <div class="col-xl-10">
+                <p class="fs-4">Наше предложение для рынка полностью решает проблему покупки оригинальных товаров по очень низким ценам, а созданное IT решение для оформления заказов помогает людям максимально быстро разобраться с китайским приложением и быстро перейти к оформлению покупки через наш сервис.</p>
+                <div class="row g-3 g-md-5 mt-4">
+                    <div class="col-md-6 col-lg-4">
+                        <span class="fs-2 lh-1 fw-bold">$$$</span>
+                        <p class="d-block text-muted fs-lg mt-1"> <span class="text-black">Покупай товар</span>, он доступен прямо сейчас</p>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <a asp-action="ShowAll" asp-controller="Catalog" class="product-a"><span class="fs-2 lh-1 fw-bold">Каталог</span></a>
+                        <p class="d-block text-muted fs-lg mt-1"><span class="text-black">Заказывай</span> используя наши сервисы</p>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <span class="fs-2 lh-1 fw-bold">100%</span>
+                        <p class="d-block text-muted fs-lg mt-1"><span class="text-black">Всегда</span> оригинальные вещи</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -81,6 +81,11 @@ public class ClothesRepository : IClothesRepository
         return clothes;
     }
 
+    public Task<IEnumerable<Clothes>> GetClothesBySubSubCategoryId(long id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task Update(Clothes clothes)
     {
         _context.Clothes.Update(clothes);

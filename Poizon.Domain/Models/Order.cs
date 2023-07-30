@@ -12,7 +12,10 @@ public class Order
 	public User? User { get; set; }
 	public long DiscountId { get; set; }
 	[ForeignKey("DiscountId")]
-	public DiscountOnOrder? DiscountOnOrder { get; set; }
+	public Discounts? Discounts { get; set; }
+	public long PromocodeId { get; set; }
+	[ForeignKey("PromocodeId")]
+	public Promocode Promocodes { get; set; }
 	public int Price { get; set; }
 }
 

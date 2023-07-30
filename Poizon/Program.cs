@@ -19,7 +19,7 @@ builder.Services.AddMyLibraryServices();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = new PathString("/Shared/_Layout");
+        options.LoginPath = new PathString("/Account/Register");
         options.AccessDeniedPath = new PathString("/Account/Register");
     });
 
@@ -27,14 +27,14 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Main/Error");
     app.UseHsts();
 }
 
 app.UseMiddleware<ErrorMiddleware>();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();

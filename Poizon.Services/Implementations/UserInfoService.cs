@@ -175,8 +175,9 @@ public class UserInfoService : IUserInfoService
         {
             baseResponse = new BaseResponse<UserInfo>
             {
-                Description = "Error",
-                StatusCode = Domain.Enums.StatusCode.Error
+                Data = userInfo,
+                Description = "No Info",
+                StatusCode = Domain.Enums.StatusCode.OK
             };
         }
         return baseResponse;
@@ -204,5 +205,36 @@ public class UserInfoService : IUserInfoService
             };
         }
         return baseResponse;
+    }
+
+    public async Task<IBaseResponse<UserInfo>> GetChanges(UserInfo userInfo)
+    {
+        var baseResponse = new BaseResponse<UserInfo>();
+        var user = await _userInfoRepository.GetUserInfoByUserId(userInfo.UserId);
+        if (user == null)
+        {
+            await _userInfoRepository.Add(userInfo);
+            return baseResponse = new BaseResponse<UserInfo>
+            {
+                Data = userInfo,
+                Description = "Success",
+                StatusCode = Domain.Enums.StatusCode.OK
+            };
+        }
+        else
+        {
+            user.Name = userInfo.Name;
+            user.Surname = userInfo.Surname;
+            user.Age = userInfo.Age;
+
+            await _userInfoRepository.Update(user);
+            return baseResponse = new BaseResponse<UserInfo>
+            {
+                Data = user,
+                Description = "Success",
+                StatusCode = Domain.Enums.StatusCode.OK
+            };
+        }
+        
     }
 }

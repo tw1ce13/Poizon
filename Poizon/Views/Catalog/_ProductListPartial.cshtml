@@ -1,0 +1,20 @@
+﻿<!-- _ProductListPartial.cshtml -->
+@using Poizon.Domain.Helpers;
+@model IEnumerable<ClothesWithName>
+<section class="product-list">
+    @foreach (var item in Model)
+    {
+        <a href="" class="product-a">
+            <div class="product">
+                @{
+                    string base64Image = Convert.ToBase64String(item.Photo);
+                    string imageSrc = string.Format("data:image/png;base64,{0}", base64Image);
+                }
+                <img src="@imageSrc" alt="Product 1">
+                <h3>@item.SubSubCategoryName</h3>
+                <p>@item.BrandName</p>
+                <span class="price">@item.Price ₽</span>
+            </div>
+        </a>
+    }
+</section>

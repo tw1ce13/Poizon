@@ -44,7 +44,6 @@ header {
 .links .cart-link {
     display: inline-block;
     width: 40px;
-    height: 40px;
     background-image: url("../../img/order.png"); /* Замените "path/to/cart-image.png" на путь к вашей картинке */
     background-repeat: no-repeat;
     background-size: contain;
@@ -467,6 +466,8 @@ aside {
 
 .product img {
     max-width: 100%;
+    max-height: 180px;
+    object-fit:fill;
 }
 
 .product h3 {
@@ -652,6 +653,8 @@ aside {
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    width: 25px;
+    height: 25px;
 }
 
 .plus-btn {
@@ -661,6 +664,8 @@ aside {
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    width: 25px;
+    height: 25px;
 }
 
 .quantity-btn:hover {
@@ -676,9 +681,9 @@ aside {
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 15px;
-    font-size: 16px;
-    height: 15px;
+    width: 25px;
+    font-size: 13px;
+    height: 25px;
 }
 
 .custom-input {
@@ -1028,3 +1033,305 @@ input[type="text"] {
     .checkout-button:hover {
         background-color: #c1c1c1;
     }
+
+.registration-link {
+    text-align: center;
+    margin-top: 10px;
+    text-decoration:none;
+    font-family:"Grotesk";
+}
+
+.registration-link-text {
+    align-content: center;
+    color: blue;
+    text-decoration: none;
+    font-family: "Grotesk";
+    /* Дополнительные стили по вашему выбору */
+}
+
+@media (max-width: 992px) {
+    .product-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel {
+        margin: 15px 0;
+    }
+    .carousel img{
+        max-height:450px;
+        object-fit:contain;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 576px) {
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+    .product-details h1 {
+        font-size: 22px;
+    }
+
+    .product-details .price {
+        font-size: 20px;
+    }
+    .carousel .carousel-item {
+        margin-right: 10px;
+        height: 250px; /* Set a fixed height for the carousel items */
+    }
+    .carousel img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+    .product-details .description {
+        font-size: 16px;
+    }
+
+    .product-details .btn {
+        font-size: 18px;
+    }
+
+    .carousel img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel img {
+        max-height: 250px;
+        object-fit: cover; /* Change this to cover for mobile devices */
+    }
+}
+
+.container3 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh; /* Добавлено для занимания всей высоты экрана */
+}
+
+.page-title {
+    margin-top: 30px;
+    background-color: #C0C0C0;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+.product-wrapper {
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 40px; /* Увеличиваем размер блока */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 60vh; /* Добавлено для занимания всей высоты блока container */
+}
+
+
+.product-details {
+    flex: 1;
+    max-width: 100%;
+}
+
+    .product-details h1 {
+        font-size: 28px;
+        font-family: "Grotesk";
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .product-details .price {
+        font-size: 24px;
+        font-family: "Grotesk";
+        color: #000000;
+    }
+
+    .product-details .description {
+        font-size: 18px;
+        font-family: "Grotesk";
+        margin-top: 20px;
+        color: #666;
+    }
+
+    .product-details .btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin-top: 30px;
+        background-color: #808080;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        font-family: "Grotesk";
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .product-details .btn:hover {
+            background-color: #C0C0C0;
+        }
+
+.carousel {
+    display: flex;
+    overflow: hidden;
+    margin-top: 30px;
+    align-items: flex-start; /* Установим выравнивание элементов карусели вверх */
+}
+
+    .carousel img {
+        max-width: 700px;
+        max-height: 700px; /* Adjust this value as needed to set the desired image height */
+        border-radius: 10px;
+        object-fit: fill; /* This will make sure the image fills the container while maintaining its aspect ratio */
+        cursor: pointer; /* Добавим курсор-указатель при наведении на фотографии */
+    }
+
+    .carousel .carousel-item {
+        margin-right: 10px;
+    }
+
+        .carousel .carousel-item:last-child {
+            margin-right: 0;
+        }
+
+        .carousel .carousel-item img {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel .carousel-item.active img {
+            opacity: 1;
+        }
+
+/* Стилизуем стрелочки для переключения фотографий */
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.carousel-control {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    color: #333;
+    outline: none;
+    transition: color 0.3s ease;
+}
+
+    .carousel-control:hover {
+        color: #808080;
+    }
+
+@media (max-width: 992px) {
+    .product-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel {
+        margin: 15px 0;
+    }
+
+        .carousel img {
+            max-height: 450px;
+            object-fit: contain;
+        }
+}
+
+/* Мобильные устройства */
+@media (max-width: 576px) {
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+    .product-details h1 {
+        font-size: 22px;
+    }
+
+    .product-details .price {
+        font-size: 20px;
+    }
+
+    .carousel .carousel-item {
+        margin-right: 10px;
+        height: 250px; /* Set a fixed height for the carousel items */
+    }
+
+    .carousel img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+    .product-details .description {
+        font-size: 16px;
+    }
+
+    .product-details .btn {
+        font-size: 18px;
+    }
+
+    .carousel img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel img {
+        max-height: 250px;
+        object-fit: cover; /* Change this to cover for mobile devices */
+    }
+}
+
+@keyframes drawCheck {
+    0% {
+        width: 0;
+        height: 0;
+        border: 5px solid transparent;
+        transform: rotate(45deg);
+    }
+
+    100% {
+        width: 120px;
+        height: 120px;
+        border: 5px solid #00b300;
+        transform: rotate(45deg);
+    }
+}
+
+.error-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 100px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.btn-back {
+    margin-top: 20px;
+}
