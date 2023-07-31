@@ -17,7 +17,7 @@ public class PoizonContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=PoizonShop;Username=postgres;Password=1377;");
+            optionsBuilder.UseNpgsql("Host=83.220.174.78;Port=5432;Database=poizon;Username=poizon;Password=tishaShop;");
         }
     }
 
