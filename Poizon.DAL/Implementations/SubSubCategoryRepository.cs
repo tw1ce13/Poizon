@@ -36,6 +36,9 @@ public class SubSubCategoryRepository : ISubSubCategoryRepository
         return subSubCategory!;
     }
 
+    public async Task<SubSubCategory> GetSubSubCategoryByName(string name) =>
+        await _context.SubSubCategories.FirstOrDefaultAsync(x => x.Name == name);
+
     public async Task Update(SubSubCategory subSubCategory)
     {
         _context.SubSubCategories.Add(subSubCategory);

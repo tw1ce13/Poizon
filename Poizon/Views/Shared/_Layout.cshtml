@@ -1,12 +1,11 @@
-﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/site.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/js/site.js"></script>
     <title>@ViewBag.Title</title>
@@ -19,59 +18,92 @@
             </div>
             <div class="links">
                 <a asp-controller="Catalog" asp-action="ShowAll" style="padding-top: 3vh;">Каталог</a>
-                <a href="about.html" style="padding-top: 3vh;">О нас</a>
+                <a asp-action="Index" asp-controller="Info" style="padding-top: 3vh;">О нас</a>
                 <a href="#" class="cart-link"></a>
-                <a href="#" style="padding-top: 3vh;" class="login-button">Вход</a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="#" style="padding-top: 3vh;" class="login-button">Вход</a>
+                }
+                else
+                {
+                    <div class="circle-link">
+                        <div class="dropdown-content">
+                            <div class="dropdown-item">
+                                <a asp-action="ShowUserInfo" asp-controller="Account">Личный кабинет</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a asp-action="Logout" asp-controller="Account">Выход</a>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </header>
 
+    <div class="registration-overlay">
+        <div class="registration-form-container">
+            <div class="close-button">&times;</div>
+
+        </div>
+    </div>
 
     <div class="registration-overlay">
         <div class="registration-form-container">
             <div class="close-button">&times;</div>
             <h2 class="form-title">Вход:</h2>
-            <form class="registration-form" id="loginForm" method="POST">
+            <form class="registration-form" id="loginForm" method="POST" asp-controller="Account" asp-action="Login">
                 <div class="form-group">
-                    <label for="phone-input">Номер телефона:</label>
-                    <input type="tel" id="phone-input" name="phone" placeholder="Введите номер телефона" required>
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" placeholder="Введите электронную почту" required>
                 </div>
                 <div class="form-group">
-                    <label for="code-input">Код подтверждения:</label>
-                    <input type="text" id="code-input" name="code" placeholder="Введите код подтверждения" required>
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" placeholder="Введите пароль" required>
                 </div>
                 <button type="submit" class="submit-button">Войти</button>
             </form>
+            <p class="registration-link">Нет аккаунта? <a asp-action="Register" asp-controller="Account" class="registration-link-text">Регистрируйся</a></p>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            // Открытие формы регистрации
+            $(".login-button").on("click", function () {
+                // Отправка GET-запроса на сервер
+                $.ajax({
+                    url: '@Url.Action("Login", "Account")', // URL для метода Login в AccountController
+                    type: "GET",
+                    success: function (data) {
+                        // При успешном получении данных, отображаем их в registration-overlay
+                        $(".registration-overlay").fadeIn();
+                        $(".registration-form-container").css("right", "0");
+                        $(".registration-form-container").html(data); // Заменяем содержимое контейнера полученными данными
+                    },
+                    error: function () {
+                        // Обработка ошибки, если не удалось получить данные
+                        alert("Ошибка при загрузке формы входа.");
+                    }
+                });
+            });
+            $(".close-button").on("click", function () {
+                $(".registration-overlay").fadeOut();
+                $(".registration-form-container").css("right", "-400px");
+            });
+        });
+    </script>
 
     <div class="cart-overlay">
         <div class="cart-container">
             <div class="close-button">&times;</div>
             <h2 class="cart-title">Корзина</h2>
-            <div class="cart-items">
-                <ul class="cart-list">
-                    <li class="cart-item">
-                        <div class="cart-item-image">
-                            <img src="" alt="Product 1">
-                        </div>
-                        <div class="cart-item-details">
-                            <div class="cart-item-title">Название товара</div>
-                            <div class="cart-item-quantity" style="padding-bottom: 1vh; padding-top: 1vh;">
-                                <button class="quantity-btn minus-btn">-</button>
-                                <input type="number" id="quantity-1" value="1" min="1" class="custom-input">
-                                <button class="quantity-btn plus-btn">+</button>
-                            </div>
-                            <div class="cart-item-price">Цена: $90</div>
-                            <a href="#" class="cart-item-remove">Удалить</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="total">Итого: $0</div>
-            <button class="checkout-button">Оформить заказ</button>
+            
         </div>
     </div>
+    <style>
+
+    </style>
+
     <div>
         @RenderBody()
     </div>
@@ -85,6 +117,67 @@
             <p class="footer-text">© 2023 Tishamarket</p>
         </div>
     </footer>
+
+    <style>
+        .registration-link {
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            font-family: "Grotesk";
+        }
+
+        .registration-link-text {
+            align-content: center;
+            color: blue;
+            text-decoration: none;
+            font-family: "Grotesk";
+            /* Дополнительные стили по вашему выбору */
+        }
+
+        .circle-link {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: none;
+            border-radius: 5px;
+            color: black;
+        }
+
+        .circle-link:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            font-family: "Grotesk";
+            font-size: 14px;
+        }
+
+            .dropdown-item a {
+                text-decoration: none;
+                color: #333;
+            }
+
+                .dropdown-item a:hover {
+                    color: #696969;
+                }
+    </style>
+
 </body>
 </html>
 

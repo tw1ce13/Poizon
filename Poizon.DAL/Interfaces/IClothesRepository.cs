@@ -6,6 +6,7 @@ public interface IClothesRepository : IBaseRepository<Clothes>
 {
     Task<IEnumerable<Clothes>> GetClothesByCategoryId(long id);
     Task<IEnumerable<Clothes>> GetClothesBySubCategoryId(long id);
+    Task<IEnumerable<Clothes>> GetClothesBySubSubCategoryId(long id);
     Task<IEnumerable<Clothes>> GetClothesByBrandId(long id);
     Task<IEnumerable<Clothes>> GetClothesByModelId(long id);
     Task<IEnumerable<Clothes>> GetClothesByStyleId(long id);

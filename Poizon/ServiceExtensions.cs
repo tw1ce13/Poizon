@@ -10,12 +10,11 @@ public static class ServiceExtensions
 {
     public static void AddMyLibraryServices(this IServiceCollection services)
     {
-        services.AddScoped<IAvailabilityService, AvailabilityService>();
+        services.AddSession();
+
         services.AddScoped<IBrandService, BrandService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IClothesService, ClothesService>();
-        services.AddScoped<IDiscountOnItemService, DiscountOnItemService>();
-        services.AddScoped<IDiscountOnOrderService, DiscountOnOrderService>();
         services.AddScoped<IModelService, ModelService>();
         services.AddScoped<IOrderClothesService, OrderClothesService>();
         services.AddScoped<IOrderService, OrderService>();
@@ -26,13 +25,11 @@ public static class ServiceExtensions
         services.AddScoped<IUserInfoService, UserInfoService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ISubSubCategoryService, SubSubCategoryService>();
+        services.AddScoped<IAccountService, AccountService>();
 
-        services.AddTransient<IAvailabilityRepository, AvailabilityRepository>();
         services.AddTransient<IBrandRepository, BrandRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IClothesRepository, ClothesRepository>();
-        services.AddTransient<IDiscountOnItemRepository, DiscountOnItemRepository>();
-        services.AddTransient<IDiscountOnOrderRepository, DiscountOnOrderRepository>();
         services.AddTransient<IModelRepository, ModelRepository>();
         services.AddTransient<IOrderClothesRepository, OrderClothesRepository>();
         services.AddTransient<IOrderRepository, OrderRepository>();

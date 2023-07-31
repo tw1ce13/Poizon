@@ -1,0 +1,86 @@
+﻿@using Poizon.Domain.Helpers;
+@model List<ClothesWithName>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div class="cart-container">
+    <div class="close-button">&times;</div>
+    <h2 class="cart-title">Корзина</h2>
+    @foreach (var item in Model)
+    {
+        string base64Image = Convert.ToBase64String(item.Photo);
+        string imageSrc = string.Format("data:image/png;base64,{0}", base64Image);
+        <div class="cart-items">
+            <ul class="cart-list">
+                <li class="cart-item">
+                    <div class="cart-item-image">
+                        <img src="@imageSrc" alt="Product 1">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">@item.SubSubCategoryName @item.BrandName</div>
+                        <div class="cart-item-quantity" style="padding-bottom: 1vh; padding-top: 1vh;">
+                            <button class="quantity-btn minus-btn" data-id="@item.Id">-</button>
+                            <input type="number" value="@item.Count" class="custom-input" data-id="@item.Id" data-price="@item.Price">
+                            <button class="quantity-btn plus-btn" data-id="@item.Id">+</button>
+                        </div>
+                        <div class="cart-item-price">Цена: @item.Price ₽</div>
+                        <a href="#" class="cart-item-remove-btn" data-id="@item.Id" style="color:red; text-decoration:none; font-family:'Grotesk';">Удалить</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+
+    <div class="total">Итого: $0</div>
+    <button class="checkout-button">Оформить заказ</button>
+</div>
+
+
+
+<style>
+    .minus-btn {
+        background-color: #8e8e8e;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .plus-btn {
+        background-color: #8e8e8e;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .quantity-btn:hover {
+        background-color: #c1c1c1;
+    }
+
+    .custom-input {
+        margin-left: 1vh;
+        margin-right: 1vh;
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+        appearance: none;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 25px;
+        font-size: 13px;
+        height: 25px;
+    }
+
+    .custom-input {
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+        appearance: none;
+        padding: 0;
+        text-align: center;
+    }
+</style>

@@ -3,8 +3,7 @@ namespace Poizon.Controllers;
 
 public class MainController : Controller
 {
-    public IActionResult Index()
-    {
-        return View();
-    }
+    public IActionResult Index() => View();
+
+    public IActionResult Error() => View();
 }

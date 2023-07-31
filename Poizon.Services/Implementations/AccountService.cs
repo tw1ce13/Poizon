@@ -1,5 +1,7 @@
 ﻿using System.Security.Claims;
 using Poizon.DAL.Implementations;
+using Poizon.DAL.Interfaces;
+using Poizon.Domain.Enums;
 using Poizon.Domain.Helpers;
 using Poizon.Domain.Models;
 using Poizon.Domain.Response;
@@ -10,11 +12,34 @@ namespace Poizon.Services.Implementations
 {
     public class AccountService : IAccountService
     {
-        private readonly UserRepository _userRepository;
-        public AccountService(UserRepository userRepository)
+        private readonly IUserRepository _userRepository;
+        public AccountService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
+
+        public async Task<BaseResponse<User>> ChangePassword(ChangePasswordViewModel model)
+        {
+            var user = await _userRepository.GetUserByEmail(model.Email);
+            if (HashPassword.HashPassowrd(model.Password) == user.Password)
+            {
+                user.Password = HashPassword.HashPassowrd(model.NewPassword);
+                await _userRepository.Update(user);
+                return new BaseResponse<User>
+                {
+                    Data = user,
+                    Description = "Пароль успешно изменен",
+                    StatusCode = StatusCode.OK
+                };
+            }
+            return new BaseResponse<User>
+            {
+                Data = user,
+                Description = "Неверный пароль",
+                StatusCode = StatusCode.OK
+            };
+        }
+
         public async Task<BaseResponse<ClaimsIdentity>> Login(LoginViewModel model)
         {
             var user = await _userRepository.GetUserByEmail(model.Email);
@@ -42,10 +67,11 @@ namespace Poizon.Services.Implementations
             };
         }
 
+
         public async Task<BaseResponse<ClaimsIdentity>> Register(RegisterViewModel model)
         {
             var user = await _userRepository.GetUserByEmail(model.Email);
-            if (user == null)
+            if (user != null)
             {
                 return new BaseResponse<ClaimsIdentity>
                 {
