@@ -23,8 +23,11 @@ var result = await service.CheckForUpdates(applicationInfo);
 class ApplicationInfo
 ```
 **ApplicationName** - полное название обновляемого плагина, как на CDN площадке (к примеру Get.Front.DxBxExciseStamps)
+
 **PathToApplicationFolder** - путь до папки с плагином
+
 **License** - лицензия приложения (если есть)
+
 **BaseUrl** - url для запроса к cdn площадке (к примеру https://cdn.dxbx.ru/iiko/plugins/, то есть выставлять путь до папки, в которой лежит repository.json)
 
 ```csharp
