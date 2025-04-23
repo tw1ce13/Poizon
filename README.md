@@ -30,6 +30,8 @@ class ApplicationInfo
 
 **BaseUrl** - url для запроса к cdn площадке (к примеру https://cdn.dxbx.ru/iiko/plugins/, то есть выставлять путь до папки, в которой лежит repository.json)
 
+
+---
 ```csharp
 class Updater
 ```
